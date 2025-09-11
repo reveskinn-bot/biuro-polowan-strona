@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polowania w Polsce - Profesjonalna Organizacja Polowań</title>
+    <title>Baltic Antler - Profesjonalna Organizacja Polowań w Polsce</title>
     <meta name="description" content="Profesjonalne polowania w Polsce. Licencjonowane biuro z wieloletnim doświadczeniem. Polowania na jelenie, sarny, dziki w najlepszych łowiskach.">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -26,7 +26,7 @@
             padding: 0 20px;
         }
 
-        /* Hunting Header */
+        /* Header */
         header {
             background: linear-gradient(135deg, #2d4934, #4a7c59);
             color: white;
@@ -48,6 +48,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
         }
 
         .logo {
@@ -99,6 +105,106 @@
             width: 100%;
         }
 
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+            z-index: 1001;
+        }
+
+        .lang-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-current {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 70px;
+        }
+
+        .lang-current:hover {
+            background: rgba(212,175,55,0.2);
+            border-color: #d4af37;
+        }
+
+        .lang-current .flag {
+            font-size: 1.2rem;
+        }
+
+        .lang-current .code {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .lang-current .arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .lang-dropdown.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        .lang-options {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(45, 73, 52, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 8px;
+            min-width: 180px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 1002;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .lang-dropdown.open .lang-options {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 12px 16px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(212,175,55,0.1);
+        }
+
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+
+        .lang-option:hover {
+            background: rgba(212,175,55,0.2);
+            color: #d4af37;
+        }
+
+        .lang-option .flag {
+            font-size: 1.2rem;
+        }
+
+        .lang-option .name {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
         .mobile-menu {
             display: none;
             flex-direction: column;
@@ -114,7 +220,7 @@
             border-radius: 2px;
         }
 
-        /* Forest Hero Section */
+        /* Hero Section */
         .hero {
             height: 100vh;
             background: linear-gradient(135deg, rgba(45, 73, 52, 0.6), rgba(74, 124, 89, 0.4)), 
@@ -232,16 +338,6 @@
             position: relative;
         }
 
-        .about::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><circle cx="20" cy="20" r="2" fill="%234a7c59"/><circle cx="80" cy="40" r="1.5" fill="%234a7c59"/><circle cx="40" cy="70" r="1" fill="%234a7c59"/><circle cx="70" cy="80" r="2.5" fill="%234a7c59"/></svg>');
-        }
-
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -282,36 +378,11 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(45, 73, 52, 0.3);
-        }
-
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><polygon fill="rgba(255,255,255,0.1)" points="100,20 130,80 70,80"/><polygon fill="rgba(255,255,255,0.05)" points="150,40 170,90 130,90"/><polygon fill="rgba(255,255,255,0.08)" points="50,30 80,85 20,85"/></svg>');
-        }
-
-        .about-image-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-        }
-
-        .about-image-content .forest-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .about-image-content p {
             font-size: 1.2rem;
-            font-weight: 500;
         }
 
         /* Services Section */
@@ -486,14 +557,38 @@
 
         /* Contact Section */
         .contact {
-            background: linear-gradient(135deg, #2d4934, #4a7c59);
+            background: linear-gradient(135deg, #1a2e1f, #2d4934);
             color: white;
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.1), transparent 50%);
+        }
+
+        .contact .section-title h2 {
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .contact .section-title p {
+            color: #e8f2ea;
+            font-size: 1.3rem;
+            font-weight: 500;
         }
 
         .contact-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
+            position: relative;
+            z-index: 2;
         }
 
         .contact-info h3 {
@@ -648,6 +743,11 @@
                 display: none;
             }
 
+            .language-selector {
+                margin-left: 0;
+                margin-right: 1rem;
+            }
+
             .mobile-menu {
                 display: flex;
             }
@@ -666,6 +766,10 @@
 
             section {
                 padding: 60px 0;
+            }
+
+            .nav-left {
+                gap: 1rem;
             }
         }
 
@@ -701,14 +805,55 @@
     <!-- Header -->
     <header id="header">
         <nav class="container">
-            <div class="logo">Polowania</div>
-            <ul class="nav-links">
-                <li><a href="#home">Strona główna</a></li>
-                <li><a href="#about">O nas</a></li>
-                <li><a href="#services">Usługi</a></li>
-                <li><a href="#offers">Oferta</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-            </ul>
+            <div class="nav-left">
+                <div class="logo">Baltic Antler</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Strona główna</a></li>
+                    <li><a href="#about">O nas</a></li>
+                    <li><a href="#services">Usługi</a></li>
+                    <li><a href="#offers">Oferta</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+            </div>
+            <div class="language-selector">
+                <div class="lang-dropdown" id="langDropdown">
+                    <div class="lang-current" onclick="toggleLanguageDropdown()">
+                        <span class="flag">🇵🇱</span>
+                        <span class="code">PL</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="lang-options">
+                        <a href="#" class="lang-option" onclick="changeLanguage('pl')">
+                            <span class="flag">🇵🇱</span>
+                            <span class="name">Polski</span>
+                        </a>
+                        <a href="#" class="lang-option" onclick="changeLanguage('en')">
+                            <span class="flag">🇬🇧</span>
+                            <span class="name">English</span>
+                        </a>
+                        <a href="#" class="lang-option" onclick="changeLanguage('no')">
+                            <span class="flag">🇳🇴</span>
+                            <span class="name">Norsk</span>
+                        </a>
+                        <a href="#" class="lang-option" onclick="changeLanguage('sv')">
+                            <span class="flag">🇸🇪</span>
+                            <span class="name">Svenska</span>
+                        </a>
+                        <a href="#" class="lang-option" onclick="changeLanguage('de')">
+                            <span class="flag">🇩🇪</span>
+                            <span class="name">Deutsch</span>
+                        </a>
+                        <a href="#" class="lang-option" onclick="changeLanguage('nl')">
+                            <span class="flag">🇳🇱</span>
+                            <span class="name">Nederlands</span>
+                        </a>
+                        <a href="#" class="lang-option" onclick="changeLanguage('be')">
+                            <span class="flag">🇧🇪</span>
+                            <span class="name">Belgisch</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
             <div class="mobile-menu">
                 <span></span>
                 <span></span>
@@ -733,32 +878,6 @@
                 <div class="about-text">
                     <h3>Tradycja i profesjonalizm</h3>
                     <h2>Polowania z Doświadczeniem</h2>
-                    <p>Jesteśmy licencjonowanym biurem organizującym polowania w całej Polsce. Współpracujemy z najlepszymi kołami łowieckimi i ośrodkami hodowli zwierzyny, dbając o tradycyjne wartości myślistwa.</p>
-                    <p>Nasze wieloletnie doświadczenie, profesjonalizm i dogłębna znajomość najlepszych łowisk gwarantują niezapomniane wrażenia myśliwskie w bezpiecznych warunkach.</p>
-                    <p>Oferujemy pełne wsparcie organizacyjne - od komfortowego zakwaterowania, przez tradycyjne wyżywienie myśliwskie, aż po najbardziej doświadczonych przewodników.</p>
-                    <a href="#contact" class="btn btn-outline">Skontaktuj się z nami</a>
-                </div>
-                <div class="about-image">
-                    <div class="about-image-content">
-                        <span class="forest-icon">🌲</span>
-                        <p>Łowiska w sercu<br>polskiej przyrody</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-title scroll-reveal">
-                <h2>Nasze Usługi</h2>
-                <p>Kompleksowa organizacja polowań z pełnym serwisem myśliwskim</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card scroll-reveal">
-                    <div class="service-icon">🎯</div>
-                    <h3>Polowania Indywidualne</h3>
                     <p>Polowania dostosowane do Twoich preferencji i poziomu doświadczenia myśliwskiego. Indywidualna opieka doświadczonego przewodnika.</p>
                 </div>
                 <div class="service-card scroll-reveal">
@@ -914,7 +1033,7 @@
                     <div class="contact-item">
                         <strong>📧 Email</strong>
                         polowania.kontakt@email.com<br>
-                        biuro@polowania-pl.com
+                        biuro@balticantler.com
                     </div>
                     <div class="contact-item">
                         <strong>📞 Telefon</strong>
@@ -970,7 +1089,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>🦌 Polowania</h3>
+                    <h3>🦌 Baltic Antler</h3>
                     <p>Profesjonalna organizacja polowań w Polsce. Licencjonowana działalność z wieloletnim doświadczeniem w organizacji polowań myśliwskich zgodnych z tradycją.</p>
                 </div>
                 <div class="footer-section">
@@ -989,7 +1108,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Polowania. Wszystkie prawa zastrzeżone. | 
+                <p>&copy; 2024 Baltic Antler. Wszystkie prawa zastrzeżone. | 
                 <a href="#">Polityka prywatności</a> | 
                 <a href="#">Regulamin</a></p>
             </div>
@@ -997,54 +1116,6 @@
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Header background change on scroll
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Scroll reveal animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.scroll-reveal').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Dziękujemy za zapytanie! Skontaktujemy się z Państwem w ciągu 24 godzin z indywidualną ofertą polowania.');
-        });
-
         // Language functionality
         let currentLanguage = 'pl';
         
@@ -1234,6 +1305,56 @@
                 dropdown.classList.remove('open');
             }
         });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Dziękujemy za zapytanie! Skontaktujemy się z Państwem w ciągu 24 godzin z indywidualną ofertą polowania.');
+        });
+
+        // Mobile menu toggle
         document.querySelector('.mobile-menu').addEventListener('click', function() {
             const navLinks = document.querySelector('.nav-links');
             if (navLinks.style.display === 'flex') {
@@ -1252,4 +1373,27 @@
         });
     </script>
 </body>
-</html>
+</html>Jesteśmy licencjonowanym biurem organizującym polowania w całej Polsce. Współpracujemy z najlepszymi kołami łowieckimi i ośrodkami hodowli zwierzyny, dbając o tradycyjne wartości myślistwa.</p>
+                    <p>Nasze wieloletnie doświadczenie, profesjonalizm i dogłębna znajomość najlepszych łowisk gwarantują niezapomniane wrażenia myśliwskie w bezpiecznych warunkach.</p>
+                    <p>Oferujemy pełne wsparcie organizacyjne - od komfortowego zakwaterowania, przez tradycyjne wyżywienie myśliwskie, aż po najbardziej doświadczonych przewodników.</p>
+                    <a href="#contact" class="btn btn-outline">Skontaktuj się z nami</a>
+                </div>
+                <div class="about-image">
+                    <span>Zdjęcie z polowania 🦌 🐗 🦆</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title scroll-reveal">
+                <h2>Nasze Usługi</h2>
+                <p>Kompleksowa organizacja polowań z pełnym serwisem myśliwskim</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">🎯</div>
+                    <h3>Polowania Indywidualne</h3>
+                    <p>
