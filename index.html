@@ -14,7 +14,7 @@
       line-height:1.6;
       color:#2d4934;
       background:#f4f7f5;
-      padding-top:110px;
+      padding-top:128px; /* wiekszy header */
     }
     .container { max-width:1200px; margin:0 auto; padding:0 20px; }
 
@@ -34,25 +34,25 @@
       display:flex;
       justify-content:space-between;
       align-items:center;
-      padding:1.15rem 0;
+      padding:1.35rem 0; /* wieksze */
       position:relative;
     }
 
     .nav-left{
       display:flex;
       align-items:center;
-      gap:2.2rem;
+      gap:2.6rem; /* wieksze */
       min-width:0;
     }
 
     .logo{
       font-family:'Crimson Text', serif;
-      font-size:2.55rem;
+      font-size:2.85rem; /* wieksze */
       font-weight:700;
       color:#d4af37;
       display:flex;
       align-items:center;
-      gap:1.05rem;
+      gap:1.15rem;
       user-select:none;
       line-height:1;
       min-width:0;
@@ -60,14 +60,14 @@
     .logo::before{ content:none; }
 
     .logo-img{
-      height:86px;
+      height:98px; /* WIEKSZE logo */
       width:auto;
       display:block;
       filter: drop-shadow(0 12px 24px rgba(0,0,0,.45));
     }
 
     .logo span{
-      letter-spacing:.5px;
+      letter-spacing:.6px;
       transform: translateY(1px);
       white-space:nowrap;
     }
@@ -75,27 +75,27 @@
     .nav-links{
       display:flex;
       list-style:none;
-      gap:2.3rem;
+      gap:2.6rem; /* wieksze */
       align-items:center;
       margin:0; padding:0;
     }
     .nav-links a{
       color:#fff;
       text-decoration:none;
-      font-weight:700;
-      font-size:1.08rem;
+      font-weight:800;
+      font-size:1.18rem; /* wieksze */
       letter-spacing:.35px;
       transition:all .2s ease;
       position:relative;
       white-space:nowrap;
-      opacity:.95;
+      opacity:.96;
     }
     .nav-links a:hover{ color:#d4af37; transform:translateY(-2px); opacity:1; }
     .nav-links a::after{
       content:'';
       position:absolute;
       width:0; height:2px;
-      bottom:-7px; left:0;
+      bottom:-8px; left:0;
       background:#d4af37;
       transition:width .2s ease;
     }
@@ -122,22 +122,22 @@
     .lang-current{
       display:flex;
       align-items:center;
-      gap:.55rem;
-      padding:12px 16px;
+      gap:.6rem;
+      padding:14px 18px; /* wieksze */
       background: rgba(255,255,255,.12);
       border:1px solid rgba(212,175,55,.35);
       border-radius:12px;
       color:#fff;
       cursor:pointer;
       transition:all .2s ease;
-      min-width:110px;
+      min-width:128px; /* wieksze */
       justify-content:center;
-      font-weight:800;
+      font-weight:900;
     }
     .lang-current:hover{ background:rgba(212,175,55,.18); border-color:#d4af37; }
-    .lang-current .flag{ font-size:1.55rem; }
-    .lang-current .code{ font-size:1.05rem; font-weight:900; letter-spacing:.4px; }
-    .lang-current .arrow{ font-size:.75rem; transition:transform .2s ease; opacity:.9; }
+    .lang-current .flag{ font-size:1.75rem; } /* wieksze */
+    .lang-current .code{ font-size:1.12rem; font-weight:900; letter-spacing:.5px; }
+    .lang-current .arrow{ font-size:.8rem; transition:transform .2s ease; opacity:.9; }
     .lang-dropdown.open .arrow{ transform:rotate(180deg); }
 
     .lang-options{
@@ -148,7 +148,7 @@
       backdrop-filter: blur(10px);
       border:1px solid rgba(212,175,55,.35);
       border-radius:14px;
-      min-width:220px;
+      min-width:240px;
       box-shadow:0 20px 50px rgba(0,0,0,.35);
       z-index:1002;
       opacity:0;
@@ -162,8 +162,8 @@
     .lang-option{
       display:flex;
       align-items:center;
-      gap:.85rem;
-      padding:13px 16px;
+      gap:.9rem;
+      padding:14px 16px;
       color:#fff;
       text-decoration:none;
       transition:all .15s ease;
@@ -171,17 +171,17 @@
     }
     .lang-option:last-child{ border-bottom:none; }
     .lang-option:hover{ background:rgba(212,175,55,.18); color:#d4af37; }
-    .lang-option .flag{ font-size:1.45rem; }
-    .lang-option .name{ font-size:1rem; font-weight:800; }
+    .lang-option .flag{ font-size:1.55rem; }
+    .lang-option .name{ font-size:1.05rem; font-weight:900; }
 
     .mobile-menu{ display:none; flex-direction:column; cursor:pointer; margin-left:12px; }
     .mobile-menu span{
-      width:28px; height:3px; background:#fff; margin:4px 0;
+      width:30px; height:3px; background:#fff; margin:4px 0;
       transition:.2s; border-radius:2px;
     }
 
     .hero{
-      height:calc(100vh - 110px);
+      height:calc(100vh - 128px);
       background:
         linear-gradient(135deg, rgba(45,73,52,.62), rgba(74,124,89,.45)),
         radial-gradient(ellipse at center, rgba(212,175,55,.12), transparent),
@@ -245,7 +245,10 @@
       border-radius:15px;
       box-shadow:0 15px 35px rgba(45,73,52,.3);
       display:flex; align-items:center; justify-content:center;
-      color:#fff; font-weight:700;
+      color:#fff; font-weight:800;
+      font-size:1.05rem;
+      text-align:center;
+      padding:12px;
     }
 
     .services{ background:#fff; }
@@ -269,7 +272,7 @@
       color:#fff; font-size:2rem;
       box-shadow:0 8px 20px rgba(74,124,89,.28);
     }
-    .service-card h3{ color:#2d4934; margin-bottom:.8rem; font-size:1.25rem; font-weight:800; }
+    .service-card h3{ color:#2d4934; margin-bottom:.8rem; font-size:1.25rem; font-weight:900; }
     .service-card p{ color:#5a7a61; line-height:1.7; }
 
     .hunting-offers{ background: linear-gradient(135deg, #e8f2ea, #f0f5f1); }
@@ -289,7 +292,7 @@
       color:#fff; padding:6px 18px;
       border-radius:20px;
       display:inline-block;
-      font-size:.9rem; font-weight:700;
+      font-size:.9rem; font-weight:800;
       margin-bottom:1.2rem;
     }
     .hunt-details{ display:grid; grid-template-columns:2fr 1fr; gap:2.2rem; margin-top:1rem; }
@@ -300,9 +303,9 @@
       border-radius:12px;
       border:1px solid #d4e6d7;
     }
-    .package-includes h4{ color:#2d4934; margin-bottom:1rem; font-size:1.05rem; font-weight:800; }
+    .package-includes h4{ color:#2d4934; margin-bottom:1rem; font-size:1.05rem; font-weight:900; }
     .package-includes ul{ list-style:none; padding:0; }
-    .package-includes li{ padding:6px 0; padding-left:25px; color:#4a5d51; font-weight:600; position:relative; }
+    .package-includes li{ padding:6px 0; padding-left:25px; color:#4a5d51; font-weight:700; position:relative; }
     .package-includes li::before{ content:"✓"; color:#4a7c59; font-weight:900; position:absolute; left:0; }
 
     .price-note{
@@ -323,10 +326,10 @@
       background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,.1), transparent 50%);
     }
     .contact .section-title h2{ color:#fff; text-shadow:2px 2px 4px rgba(0,0,0,.3); }
-    .contact .section-title p{ color:#e8f2ea; font-size:1.2rem; font-weight:600; }
+    .contact .section-title p{ color:#e8f2ea; font-size:1.2rem; font-weight:700; }
 
     .contact-content{ display:grid; grid-template-columns:1fr 1fr; gap:3rem; position:relative; z-index:2; }
-    .contact-info h3{ color:#d4af37; margin-bottom:1.5rem; font-size:1.55rem; font-weight:800; }
+    .contact-info h3{ color:#d4af37; margin-bottom:1.5rem; font-size:1.55rem; font-weight:900; }
     .contact-item{
       margin-bottom:1.3rem;
       padding:1.2rem;
@@ -342,9 +345,9 @@
       border-radius:15px;
       backdrop-filter: blur(10px);
     }
-    .contact-form h3{ color:#d4af37; margin-bottom:1.2rem; font-size:1.55rem; font-weight:800; }
+    .contact-form h3{ color:#d4af37; margin-bottom:1.2rem; font-size:1.55rem; font-weight:900; }
     .form-group{ margin-bottom:1.1rem; }
-    .form-group label{ display:block; margin-bottom:.4rem; color:#d4af37; font-weight:800; }
+    .form-group label{ display:block; margin-bottom:.4rem; color:#d4af37; font-weight:900; }
     .form-group input, .form-group textarea{
       width:100%; padding:12px;
       border:2px solid rgba(212,175,55,.3);
@@ -374,9 +377,10 @@
     @media (max-width: 1024px){
       .hunt-details, .about-content, .contact-content{ grid-template-columns:1fr; gap:2rem; }
       .hero-content h1{ font-size:3.4rem; }
-      body{ padding-top:105px; }
-      .logo-img{ height:78px; }
-      .logo{ font-size:2.2rem; }
+      body{ padding-top:120px; }
+      .logo-img{ height:88px; }
+      .logo{ font-size:2.45rem; }
+      .nav-links a{ font-size:1.1rem; }
     }
 
     @media (max-width: 768px){
@@ -386,9 +390,9 @@
       .section-title h2{ font-size:2.2rem; }
       section{ padding:60px 0; }
       .nav-left{ gap:1rem; }
-      body{ padding-top:102px; }
-      .logo-img{ height:70px; }
-      .logo{ font-size:2.0rem; }
+      body{ padding-top:116px; }
+      .logo-img{ height:78px; }
+      .logo{ font-size:2.15rem; }
     }
   </style>
 </head>
@@ -403,19 +407,19 @@
         </div>
 
         <ul class="nav-links">
-          <li><a href="#home" data-i18n="nav.home">Strona glowna</a></li>
-          <li><a href="#about" data-i18n="nav.about">O nas</a></li>
-          <li><a href="#services" data-i18n="nav.services">Uslugi</a></li>
-          <li><a href="#offers" data-i18n="nav.offers">Oferta</a></li>
-          <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
+          <li><a href="#home" data-i18n="nav.home"></a></li>
+          <li><a href="#about" data-i18n="nav.about"></a></li>
+          <li><a href="#services" data-i18n="nav.services"></a></li>
+          <li><a href="#offers" data-i18n="nav.offers"></a></li>
+          <li><a href="#contact" data-i18n="nav.contact"></a></li>
         </ul>
       </div>
 
       <div class="language-selector">
         <div class="lang-dropdown" id="langDropdown">
           <div class="lang-current" id="langCurrent">
-            <span class="flag">🇵🇱</span>
-            <span class="code">PL</span>
+            <span class="flag">🌍</span>
+            <span class="code">--</span>
             <span class="arrow">▼</span>
           </div>
 
@@ -439,11 +443,9 @@
 
   <section id="home" class="hero">
     <div class="hero-content">
-      <h1 data-i18n="hero.title">Polowania w Polsce</h1>
-      <p data-i18n="hero.subtitle">
-       Profesjonalna organizacja polowań w Polsce. Sprawdzone łowiska, doświadczeni przewodnicy i pełna logistyka.
-      </p>
-      <a href="#offers" class="btn" data-i18n="hero.cta">Poznaj oferte</a>
+      <h1 data-i18n="hero.title"></h1>
+      <p data-i18n="hero.subtitle"></p>
+      <a href="#offers" class="btn" data-i18n="hero.cta"></a>
     </div>
   </section>
 
@@ -451,22 +453,15 @@
     <div class="container">
       <div class="about-content">
         <div class="about-text">
-          <h3 data-i18n="about.subtitle">Tradycja i profesjonalizm</h3>
-          <h2 data-i18n="about.title">Polowania z Doswiadczeniem</h2>
-          <p data-i18n="about.text1">
-            Mamy ponad 30-letnie doświadczenie w prowadzeniu i organizacji polowań, w tym polowań dla myśliwych z Danii, Norwegii, Belgii i Francji, którzy polowali w naszych obwodach.
-          </p>
-          <p data-i18n="about.text2">
-            Łowiska w regionie kołobrzeskim należą do najbogatszych w zwierzynę grubą w Polsce i wyróżniają się szczególnie dużą liczebnością dzików, jeleni oraz saren.
-          </p>
-          <p data-i18n="about.text3">
-            W okresie rykowiska pozyskuje się byki o masie wieńców od 6 do 8 kg, z możliwością spotkania sztuk przekraczających 10 kg. Duża liczba dzików pozwala nam organizować zarówno polowania pędzone, jak i bardzo popularne polowania indywidualne.
-Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza w maju oraz w okresie lipiec–sierpień. Przeciętna masa trofeum wynosi 250–350 g netto, choć zdarzają się także okazy przekraczające 500 g.
-          </p>
-          <a href="#contact" class="btn btn-outline" data-i18n="about.cta">Kontakt</a>
+          <h3 data-i18n="about.subtitle"></h3>
+          <h2 data-i18n="about.title"></h2>
+          <p data-i18n="about.text1"></p>
+          <p data-i18n="about.text2"></p>
+          <p data-i18n="about.text3"></p>
+          <a href="#contact" class="btn btn-outline" data-i18n="about.cta"></a>
         </div>
         <div class="about-image">
-          <span data-i18n="about.photos">Zdjecia z polowan 🦌 🐗 🦆</span>
+          <span data-i18n="about.photos"></span>
         </div>
       </div>
     </div>
@@ -475,45 +470,45 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
   <section id="services" class="services">
     <div class="container">
       <div class="section-title">
-        <h2 data-i18n="services.title">Nasze Uslugi</h2>
-        <p data-i18n="services.subtitle">Kompleksowa organizacja polowan z pelnym serwisem</p>
+        <h2 data-i18n="services.title"></h2>
+        <p data-i18n="services.subtitle"></p>
       </div>
 
       <div class="services-grid">
         <div class="service-card">
           <div class="service-icon">🎯</div>
-          <h3 data-i18n="services.service1.title">Polowania Indywidualne</h3>
-          <p data-i18n="services.service1.desc">Polowanie dopasowane do Ciebie + opieka przewodnika.</p>
+          <h3 data-i18n="services.service1.title"></h3>
+          <p data-i18n="services.service1.desc"></p>
         </div>
 
         <div class="service-card">
           <div class="service-icon">👥</div>
-          <h3 data-i18n="services.service2.title">Polowania Zbiorowe</h3>
-          <p data-i18n="services.service2.desc">Organizacja wyjazdow dla grup.</p>
+          <h3 data-i18n="services.service2.title"></h3>
+          <p data-i18n="services.service2.desc"></p>
         </div>
 
         <div class="service-card">
           <div class="service-icon">🏠</div>
-          <h3 data-i18n="services.service3.title">Zakwaterowanie</h3>
-          <p data-i18n="services.service3.desc">Sprawdzone i komfortowe noclegi blisko łowisk.</p>
+          <h3 data-i18n="services.service3.title"></h3>
+          <p data-i18n="services.service3.desc"></p>
         </div>
 
         <div class="service-card">
           <div class="service-icon">🍽️</div>
-          <h3 data-i18n="services.service4.title">Wyżywienie</h3>
-          <p data-i18n="services.service4.desc">Wyżywnienie zarówno w miejsu zakwaterowania jak również w łowisku.</p>
+          <h3 data-i18n="services.service4.title"></h3>
+          <p data-i18n="services.service4.desc"></p>
         </div>
 
         <div class="service-card">
           <div class="service-icon">🏆</div>
-          <h3 data-i18n="services.service5.title">Trofea</h3>
-          <p data-i18n="services.service5.desc">Preparacja trofeów.</p>
+          <h3 data-i18n="services.service5.title"></h3>
+          <p data-i18n="services.service5.desc"></p>
         </div>
 
         <div class="service-card">
           <div class="service-icon">📋</div>
-          <h3 data-i18n="services.service6.title">Formalnosci</h3>
-          <p data-i18n="services.service6.desc">Zajmujemy się dokumentami, zezwoleniami oraz przesyłamy voucher na polowanie.</p>
+          <h3 data-i18n="services.service6.title"></h3>
+          <p data-i18n="services.service6.desc"></p>
         </div>
       </div>
     </div>
@@ -522,56 +517,54 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
   <section id="offers" class="hunting-offers">
     <div class="container">
       <div class="section-title">
-        <h2 data-i18n="offers.title">Oferta Polowan</h2>
-        <p data-i18n="offers.subtitle">Polowania organizowane profesjonalnie w najlepszych rejonach</p>
+        <h2 data-i18n="offers.title"></h2>
+        <p data-i18n="offers.subtitle"></p>
       </div>
 
       <div class="hunt-category">
-        <h3 data-i18n="offers.roe.title">Sarna (rogacz)</h3>
-        <div class="hunt-period" data-i18n="offers.roe.season">Sezon: maj - wrzesien</div>
+        <h3 data-i18n="offers.roe.title"></h3>
+        <div class="hunt-period" data-i18n="offers.roe.season"></div>
         <div class="hunt-details">
           <div class="hunt-description">
-            <p data-i18n="offers.roe.desc">Najlepszy okres to ruja (lipiec/sierpien). Zasiadka lub podchod, zalezne od terenu i preferencji.</p>
+            <p data-i18n="offers.roe.desc"></p>
           </div>
           <div class="package-includes">
-            <h4 data-i18n="offers.includesTitle">Pakiet zawiera:</h4>
+            <h4 data-i18n="offers.includesTitle"></h4>
             <ul>
-              <li data-i18n="offers.includes.guide">Przewodnik</li>
-              <li data-i18n="offers.includes.transportArea">Transport w lowisku</li>
-              <li data-i18n="offers.includes.accommodation">Noclegi</li>
-              <li data-i18n="offers.includes.meals">Wyzywienie</li>
-              <li data-i18n="offers.includes.documents">Dokumenty</li>
+              <li data-i18n="offers.includes.guide"></li>
+              <li data-i18n="offers.includes.transportArea"></li>
+              <li data-i18n="offers.includes.accommodation"></li>
+              <li data-i18n="offers.includes.meals"></li>
+              <li data-i18n="offers.includes.documents"></li>
             </ul>
           </div>
         </div>
       </div>
 
       <div class="hunt-category">
-        <h3 data-i18n="offers.reddeer.title">Jelen (rykowisko)</h3>
-        <div class="hunt-period" data-i18n="offers.reddeer.peak">Szczyt: wrzesien - pazdziernik</div>
+        <h3 data-i18n="offers.reddeer.title"></h3>
+        <div class="hunt-period" data-i18n="offers.reddeer.peak"></div>
         <div class="hunt-details">
           <div class="hunt-description">
-            <p data-i18n="offers.reddeer.desc">Rykowisko to najmocniejsza forma polowania na byki. Organizujemy w sprawdzonych kompleksach lesnych.</p>
+            <p data-i18n="offers.reddeer.desc"></p>
           </div>
           <div class="package-includes">
-            <h4 data-i18n="offers.includesTitle">Pakiet zawiera:</h4>
+            <h4 data-i18n="offers.includesTitle"></h4>
             <ul>
-              <li data-i18n="offers.includes.guide">Przewodnik</li>
-              <li data-i18n="offers.includes.transportOffroad">Transport terenowy</li>
-              <li data-i18n="offers.includes.accommodation">Noclegi</li>
-              <li data-i18n="offers.includes.meals">Wyzywienie</li>
-              <li data-i18n="offers.includes.documents">Dokumenty</li>
+              <li data-i18n="offers.includes.guide"></li>
+              <li data-i18n="offers.includes.transportOffroad"></li>
+              <li data-i18n="offers.includes.accommodation"></li>
+              <li data-i18n="offers.includes.meals"></li>
+              <li data-i18n="offers.includes.documents"></li>
             </ul>
           </div>
         </div>
       </div>
 
       <div class="price-note">
-        <h3 data-i18n="offers.pricing">Wycena indywidualna</h3>
-        <p data-i18n="offers.pricingText">
-          Ceny zalezne od terminu, liczby dni, standardu noclegu i uslug dodatkowych. Daj parametry — dostajesz konkretna wycene.
-        </p>
-        <a href="#contact" class="btn" style="margin-top:1rem;" data-i18n="offers.pricingCta">Zapytaj o wycene</a>
+        <h3 data-i18n="offers.pricing"></h3>
+        <p data-i18n="offers.pricingText"></p>
+        <a href="#contact" class="btn" style="margin-top:1rem;" data-i18n="offers.pricingCta"></a>
       </div>
     </div>
   </section>
@@ -579,13 +572,13 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
   <section id="contact" class="contact">
     <div class="container">
       <div class="section-title">
-        <h2 data-i18n="contact.title">Kontakt</h2>
-        <p data-i18n="contact.subtitle">Napisz — odpowiemy i dopniemy wyjazd</p>
+        <h2 data-i18n="contact.title"></h2>
+        <p data-i18n="contact.subtitle"></p>
       </div>
 
       <div class="contact-content">
         <div class="contact-info">
-          <h3 data-i18n="contact.contactData">Dane kontaktowe</h3>
+          <h3 data-i18n="contact.contactData"></h3>
 
           <div class="contact-item">
             <strong>📧 Email</strong>
@@ -604,32 +597,29 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
         </div>
 
         <div class="contact-form">
-          <h3 data-i18n="contact.formTitle">Formularz</h3>
+          <h3 data-i18n="contact.formTitle"></h3>
           <form id="contactForm">
             <div class="form-group">
-              <label for="email" data-i18n="contact.emailLabel">Email *</label>
+              <label for="email" data-i18n="contact.emailLabel"></label>
               <input type="email" id="email" name="email" required />
             </div>
 
             <div class="form-group">
-              <label for="phone" data-i18n="contact.phoneLabel">Telefon</label>
+              <label for="phone" data-i18n="contact.phoneLabel"></label>
               <input type="tel" id="phone" name="phone" />
             </div>
 
             <div class="form-group">
-              <label for="message" data-i18n="contact.messageLabel">Opis polowania *</label>
-              <textarea id="message" name="message" required data-i18n-placeholder="contact.messagePlaceholder"
-                placeholder="Opisz: gatunek, termin, liczba osob, standard noclegu..."></textarea>
+              <label for="message" data-i18n="contact.messageLabel"></label>
+              <textarea id="message" name="message" required data-i18n-placeholder="contact.messagePlaceholder"></textarea>
             </div>
 
             <div class="checkbox-group">
               <input type="checkbox" id="consent" required />
-              <label for="consent" data-i18n="contact.consentLabel">
-                Zgadzam sie na kontakt w sprawie organizacji polowania.
-              </label>
+              <label for="consent" data-i18n="contact.consentLabel"></label>
             </div>
 
-            <button type="submit" class="btn" data-i18n="contact.submitBtn">Wyslij</button>
+            <button type="submit" class="btn" data-i18n="contact.submitBtn"></button>
           </form>
         </div>
       </div>
@@ -641,27 +631,25 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
       <div class="footer-content">
         <div class="footer-section">
           <h3>🦌 Pomeranian Hunter</h3>
-          <p data-i18n="footer.company">
-            Organizacja polowan w Polsce dla klientow zagranicznych. Logistyka, przewodnicy, noclegi.
-          </p>
+          <p data-i18n="footer.company"></p>
         </div>
 
         <div class="footer-section">
-          <h3 data-i18n="footer.navigation">Nawigacja</h3>
-          <p><a href="#about" data-i18n="nav.about">O nas</a></p>
-          <p><a href="#services" data-i18n="nav.services">Uslugi</a></p>
-          <p><a href="#offers" data-i18n="nav.offers">Oferta</a></p>
-          <p><a href="#contact" data-i18n="nav.contact">Kontakt</a></p>
+          <h3 data-i18n="footer.navigation"></h3>
+          <p><a href="#about" data-i18n="nav.about"></a></p>
+          <p><a href="#services" data-i18n="nav.services"></a></p>
+          <p><a href="#offers" data-i18n="nav.offers"></a></p>
+          <p><a href="#contact" data-i18n="nav.contact"></a></p>
         </div>
 
         <div class="footer-section">
-          <h3 data-i18n="footer.legal">Informacje</h3>
+          <h3 data-i18n="footer.legal"></h3>
           <p>info@pomeranian-hunter.com</p>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© <span id="year"></span> Pomeranian Hunter. <span data-i18n="footer.copyright">All rights reserved.</span></p>
+        <p>© <span id="year"></span> Pomeranian Hunter. <span data-i18n="footer.copyright"></span></p>
       </div>
     </div>
   </footer>
@@ -692,7 +680,7 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
           service1:{ title:'Polowania Indywidualne', desc:'Polowanie dopasowane do Ciebie + opieka przewodnika.' },
           service2:{ title:'Polowania Zbiorowe', desc:'Organizacja wyjazdow dla grup.' },
           service3:{ title:'Zakwaterowanie', desc:'Sprawdzone i komfortowe noclegi blisko lowisk.' },
-          service4:{ title:'Wyzywienie', desc:'Wyzywnienie zarowno w miejsu zakwaterowania jak rowniez w lowisku.' },
+          service4:{ title:'Wyzywienie', desc:'Wyzywnienie zarowno w miejscu zakwaterowania jak rowniez w lowisku.' },
           service5:{ title:'Trofea', desc:'Preparacja trofeow.' },
           service6:{ title:'Formalnosci', desc:'Zajmujemy sie dokumentami, zezwoleniami oraz przesylamy voucher na polowanie.' }
         },
