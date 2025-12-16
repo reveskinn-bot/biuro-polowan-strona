@@ -21,27 +21,38 @@
     }
     header.scrolled { background: rgba(45,73,52,.95); backdrop-filter: blur(10px); }
 
-    nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 0; }
-    .nav-left { display:flex; align-items:center; gap:3rem; }
+   .nav-left { display:flex; align-items:center; gap:2.2rem; }
 
-    .logo {
-      font-family:'Crimson Text', serif;
-      font-size:2rem; font-weight:700;
-      color:#d4af37;
-      display:flex; align-items:center; gap:.5rem;
-      user-select:none;
-    }
+    .logo{
+  font-family:'Crimson Text', serif;
+  font-size:2.2rem;
+  font-weight:700;
+  color:#d4af37;
+  display:flex;
+  align-items:center;
+  gap:0.9rem;
+  user-select:none;
+  line-height:1;
+}
+
 
     /* wywalamy emoji-jelenia */
     .logo::before { content: none; }
 
     /* logo PNG */
-    .logo-img{
-      height: 44px;
-      width: auto;
-      display: block;
-      filter: drop-shadow(0 4px 10px rgba(0,0,0,.35));
-    }
+   .logo-img{
+  height:72px;          /* TO robi robotę */
+  width:auto;
+  display:block;
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,.35));
+     
+}
+.logo span{
+  letter-spacing:.5px;
+  transform: translateY(1px);
+  white-space: nowrap;
+}
+
 
     .nav-links { display:flex; list-style:none; gap:2.5rem; }
     .nav-links a {
