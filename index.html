@@ -320,6 +320,7 @@
           <div class="lang-options">
             <a href="#" class="lang-option" data-lang="pl"><span class="flag">🇵🇱</span><span class="name">Polski</span></a>
             <a href="#" class="lang-option" data-lang="en"><span class="flag">🇬🇧</span><span class="name">English</span></a>
+            <a href="#" class="lang-option" data-lang="fr"><span class="flag">🇫🇷</span><span class="name">Francais</span></a>
             <a href="#" class="lang-option" data-lang="no"><span class="flag">🇳🇴</span><span class="name">Norsk</span></a>
             <a href="#" class="lang-option" data-lang="sv"><span class="flag">🇸🇪</span><span class="name">Svenska</span></a>
             <a href="#" class="lang-option" data-lang="de"><span class="flag">🇩🇪</span><span class="name">Deutsch</span></a>
@@ -564,7 +565,8 @@
 
   <script>
     // --- SAFE i18n (zero śmieci w HTML, zero rozjechanego JS) ---
-    let currentLanguage = 'pl';
+    // start: load saved language if exists
+    let currentLanguage = (localStorage.getItem('lang') || 'pl');
 
     const translations = {
       pl: {
@@ -670,6 +672,59 @@
           navigation:'Navigation',
           legal:'Info',
           copyright:'All rights reserved.'
+        }
+      },
+
+      fr: {
+        nav: { home:'Accueil', about:'A propos', services:'Services', offers:'Offres', contact:'Contact' },
+        hero: {
+          title:'Chasse en Pologne',
+          subtitle:'Organisation professionnelle de chasse en Pologne. Logistique, guides et accompagnement.',
+          cta:'Voir les offres'
+        },
+        about: {
+          subtitle:'Tradition et professionnalisme',
+          title:'Chasse avec experience',
+          text1:'Nous organisons des chasses dans toute la Pologne avec des societes de chasse locales fiables et des territoires verifies.',
+          text2:'Experience et connaissance du terrain = organisation plus sure et resultats concrets.',
+          text3:'Nous gerons la logistique : hebergement, repas, transport sur le territoire, formalites et preparation des trophees.',
+          cta:'Contact'
+        },
+        services: {
+          title:'Nos services',
+          subtitle:'Organisation de chasse tout compris',
+          service1:{ title:'Chasses individuelles', desc:'Chasse adaptee + guide dedie.' },
+          service2:{ title:'Chasses en groupe', desc:'Voyages de groupe avec logistique complete et ambiance traditionnelle.' },
+          service3:{ title:'Hebergement', desc:'Hebergements fiables pres des territoires.' },
+          service4:{ title:'Restauration', desc:'Cuisine regionale solide.' },
+          service5:{ title:'Trophees', desc:'Preparation des trophees + options de transport.' },
+          service6:{ title:'Formalites', desc:'Nous gerons les autorisations et la paperasse.' }
+        },
+        offers: {
+          title:'Offres de chasse',
+          subtitle:'Chasses organisees professionnellement dans les meilleurs secteurs',
+          pricing:'Devis individuel',
+          pricingText:'Le prix depend des dates, du nombre de jours, du standard d’hebergement et des options. Donnez vos parametres — vous recevez un devis clair.',
+          pricingCta:'Demander un devis'
+        },
+        contact: {
+          title:'Contact',
+          subtitle:'Ecrivez-nous — reponse rapide',
+          contactData:'Coordonnees',
+          formTitle:'Formulaire',
+          emailLabel:'Email *',
+          phoneLabel:'Telephone',
+          messageLabel:'Description de la chasse *',
+          messagePlaceholder:'Decrivez : gibier, dates, nombre de personnes, standard...',
+          consentLabel:'J’accepte d’etre contacte au sujet de l’organisation de la chasse.',
+          submitBtn:'Envoyer',
+          submitMsg:'Merci ! Nous repondrons sous 24 heures.'
+        },
+        footer: {
+          company:'Organisation de chasse en Pologne pour clients internationaux. Logistique, guides, hebergement.',
+          navigation:'Navigation',
+          legal:'Informations',
+          copyright:'Tous droits reserves.'
         }
       },
 
@@ -886,13 +941,23 @@
       }
     };
 
-    const languageFlags = { pl:'🇵🇱', en:'🇬🇧', no:'🇳🇴', sv:'🇸🇪', de:'🇩🇪', nl:'🇳🇱' };
+    // flag for every language
+    const languageFlags = {
+      pl:'🇵🇱',
+      en:'🇬🇧',
+      fr:'🇫🇷',
+      no:'🇳🇴',
+      sv:'🇸🇪',
+      de:'🇩🇪',
+      nl:'🇳🇱'
+    };
 
     function getNested(obj, path) {
       return path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj);
     }
 
     function applyTranslations() {
+      if (!translations[currentLanguage]) currentLanguage = 'pl';
       const t = translations[currentLanguage] || translations.pl;
 
       document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -912,6 +977,12 @@
       const currentCode = document.querySelector('#langCurrent .code');
       currentFlag.textContent = languageFlags[currentLanguage] || '🌍';
       currentCode.textContent = currentLanguage.toUpperCase();
+
+      // save selection
+      localStorage.setItem('lang', currentLanguage);
+
+      // keep <html lang=""> consistent
+      document.documentElement.lang = currentLanguage;
     }
 
     function closeDropdown() {
