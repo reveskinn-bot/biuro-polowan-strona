@@ -1,995 +1,508 @@
-<!DOCTYPE html>
-<html lang="pl">
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pomeranian Hunter - Profesjonalna Organizacja Polowan w Polsce</title>
-  <meta name="description" content="Profesjonalne polowania w Polsce. Organizacja polowan: dzik, jelen, sarna. Doswiadczenie, logistyka, przewodnicy." />
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet">
-
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pomeranian Hunter</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Lato', sans-serif; line-height:1.6; color:#2d4934; background:#f4f7f5; }
-    .container { max-width:1200px; margin:0 auto; padding:0 20px; }
-
-    header {
-      background: linear-gradient(135deg, #2d4934, #4a7c59);
-      color:#fff;
-      position:fixed; width:100%; top:0; z-index:1000;
-      transition:all .3s ease;
-      box-shadow:0 2px 20px rgba(45,73,52,.3);
+    :root{
+      --bg:#0b0f0c;
+      --card:#0f1511;
+      --text:#e9f2ea;
+      --muted:#b9c6bb;
+      --line:#1d2a22;
+      --accent:#9ad39a;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+      --radius: 18px;
     }
-    header.scrolled { background: rgba(45,73,52,.95); backdrop-filter: blur(10px); }
-
-    nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 0; }
-    .nav-left { display:flex; align-items:center; gap:3rem; }
-    .logo {
-      font-family:'Crimson Text', serif;
-      font-size:2rem; font-weight:700;
-      color:#d4af37;
-      display:flex; align-items:center; gap:.5rem;
-      user-select:none;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(900px 500px at 20% 0%, #122017 0%, var(--bg) 60%);
+      color:var(--text);
+      line-height:1.5;
     }
-    .logo::before { content:"🦌"; font-size:1.8rem; }
-
-    .nav-links { display:flex; list-style:none; gap:2.5rem; }
-    .nav-links a {
-      color:#fff; text-decoration:none; font-weight:500;
-      transition:all .3s ease; position:relative;
-    }
-    .nav-links a:hover { color:#d4af37; transform:translateY(-2px); }
-    .nav-links a::after {
-      content:'';
-      position:absolute; width:0; height:2px; bottom:-5px; left:0;
-      background:#d4af37; transition:width .3s ease;
-    }
-    .nav-links a:hover::after { width:100%; }
-
-    .language-selector { position:relative; z-index:1001; }
-    .lang-dropdown { position:relative; display:inline-block; }
-    .lang-current {
-      display:flex; align-items:center; gap:.5rem;
-      padding:8px 12px;
-      background: rgba(255,255,255,.1);
-      border:1px solid rgba(212,175,55,.3);
-      border-radius:8px;
-      color:#fff; cursor:pointer;
-      transition:all .3s ease;
-      min-width:76px;
-    }
-    .lang-current:hover { background:rgba(212,175,55,.2); border-color:#d4af37; }
-    .lang-current .flag { font-size:1.2rem; }
-    .lang-current .code { font-size:.9rem; font-weight:600; }
-    .lang-current .arrow { font-size:.7rem; transition:transform .3s ease; }
-    .lang-dropdown.open .arrow { transform:rotate(180deg); }
-
-    .lang-options {
-      position:absolute; top:100%; right:0;
-      background: rgba(45,73,52,.95);
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:0 18px}
+    header{
+      position:sticky;top:0;z-index:50;
       backdrop-filter: blur(10px);
-      border:1px solid rgba(212,175,55,.3);
-      border-radius:10px;
-      min-width:190px;
-      box-shadow:0 10px 30px rgba(0,0,0,.3);
-      z-index:1002;
-      opacity:0; visibility:hidden;
-      transform:translateY(-10px);
-      transition:all .3s ease;
-      overflow:hidden;
+      background: rgba(11,15,12,.75);
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
-    .lang-dropdown.open .lang-options { opacity:1; visibility:visible; transform:translateY(0); }
-    .lang-option {
-      display:flex; align-items:center; gap:.8rem;
-      padding:12px 16px;
-      color:#fff; text-decoration:none;
-      transition:all .2s ease;
-      border-bottom:1px solid rgba(212,175,55,.12);
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 0;gap:14px;
     }
-    .lang-option:last-child { border-bottom:none; }
-    .lang-option:hover { background:rgba(212,175,55,.2); color:#d4af37; }
-    .lang-option .flag { font-size:1.2rem; }
-    .lang-option .name { font-size:.95rem; font-weight:600; }
-
-    .mobile-menu { display:none; flex-direction:column; cursor:pointer; }
-    .mobile-menu span {
-      width:25px; height:3px; background:#fff; margin:3px 0;
-      transition:.3s; border-radius:2px;
+    .brand{
+      display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px;
     }
-
-    .hero {
-      height:100vh;
-      background:
-        linear-gradient(135deg, rgba(45,73,52,.6), rgba(74,124,89,.4)),
-        radial-gradient(ellipse at center, rgba(212,175,55,.1), transparent),
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="trees" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse"><polygon fill="%234a7c59" points="100,20 120,80 80,80"/><rect fill="%23654321" x="95" y="80" width="10" height="30"/><polygon fill="%23365c42" points="50,40 70,100 30,100"/><rect fill="%23654321" x="45" y="100" width="10" height="25"/><polygon fill="%235a8a6b" points="150,30 170,90 130,90"/><rect fill="%23654321" x="145" y="90" width="10" height="28"/></pattern></defs><rect fill="%232d4934" width="1200" height="800"/><rect fill="url(%23trees)" width="1200" height="400" opacity="0.3"/><path fill="%234a7c59" d="M0,400 Q300,350 600,400 T1200,420 L1200,800 L0,800 Z" opacity="0.7"/></svg>') center/cover;
-      display:flex; align-items:center; justify-content:center;
-      text-align:center; color:#fff;
-      position:relative; overflow:hidden;
+    .brand-badge{
+      width:36px;height:36px;border-radius:12px;
+      background: linear-gradient(135deg, rgba(154,211,154,.22), rgba(154,211,154,.04));
+      border:1px solid rgba(154,211,154,.25);
+      display:grid;place-items:center;
+      box-shadow: var(--shadow);
     }
-    .hero::before {
-      content:'';
-      position:absolute; inset:0;
-      background: linear-gradient(45deg, transparent, rgba(212,175,55,.1), transparent);
-      animation: shimmer 6s ease-in-out infinite;
-    }
-    @keyframes shimmer { 0%,100%{opacity:.5} 50%{opacity:.85} }
-    .hero-content { max-width:800px; z-index:2; position:relative; padding:0 10px; }
-    .hero-content h1 {
-      font-family:'Crimson Text', serif;
-      font-size:4rem; font-weight:700;
-      margin-bottom:1.2rem;
-      text-shadow:2px 2px 8px rgba(0,0,0,.5);
-      line-height:1.1;
-    }
-    .hero-content p { font-size:1.25rem; margin-bottom:2.2rem; color:#e8f2ea; line-height:1.6; }
-
-    .btn {
-      display:inline-block; padding:15px 35px;
-      background: linear-gradient(135deg, #4a7c59, #5d9068);
-      color:#fff; text-decoration:none; border-radius:10px;
-      font-weight:700; font-size:1.05rem;
-      transition:all .25s ease;
-      border:2px solid transparent;
-      box-shadow:0 4px 15px rgba(74,124,89,.3);
-    }
-    .btn:hover { transform:translateY(-2px); box-shadow:0 8px 25px rgba(74,124,89,.4); }
-    .btn-outline { background:transparent; border:2px solid #d4af37; color:#d4af37; }
-    .btn-outline:hover { background:#d4af37; color:#2d4934; }
-
-    section { padding:80px 0; }
-    .section-title { text-align:center; margin-bottom:4rem; }
-    .section-title h2 { font-family:'Crimson Text', serif; font-size:3rem; color:#2d4934; margin-bottom:1rem; font-weight:700; }
-    .section-title p { font-size:1.2rem; color:#5a7a61; max-width:700px; margin:0 auto; line-height:1.7; }
-
-    .about { background: linear-gradient(135deg, #e8f2ea, #f4f7f5); }
-    .about-content { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
-    .about-text h3 { color:#d4af37; font-size:1.05rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:.5rem; font-weight:700; }
-    .about-text h2 { font-family:'Crimson Text', serif; font-size:2.5rem; color:#2d4934; margin-bottom:1.5rem; font-weight:700; }
-    .about-text p { margin-bottom:1.1rem; line-height:1.8; color:#4a5d51; font-size:1.08rem; }
-
-    .about-image {
-      height:400px;
-      background: linear-gradient(135deg, #4a7c59, #5d9068);
-      border-radius:15px;
-      box-shadow:0 15px 35px rgba(45,73,52,.3);
-      display:flex; align-items:center; justify-content:center;
-      color:#fff; font-weight:700;
-    }
-
-    .services { background:#fff; }
-    .services-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:2rem; margin-top:2.5rem; }
-    .service-card {
-      background: linear-gradient(135deg, #f8faf9, #ffffff);
-      padding:2.2rem;
-      border-radius:15px;
-      text-align:center;
-      transition:all .25s ease;
-      border:2px solid #e8f2ea;
-      box-shadow:0 5px 20px rgba(45,73,52,.08);
-    }
-    .service-card:hover { transform:translateY(-6px); box-shadow:0 15px 40px rgba(45,73,52,.16); border-color:#4a7c59; }
-    .service-icon {
-      width:74px; height:74px;
-      background: linear-gradient(135deg, #4a7c59, #5d9068);
-      border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      margin:0 auto 1.2rem;
-      color:#fff; font-size:2rem;
-      box-shadow:0 8px 20px rgba(74,124,89,.28);
-    }
-    .service-card h3 { color:#2d4934; margin-bottom:.8rem; font-size:1.25rem; font-weight:800; }
-    .service-card p { color:#5a7a61; line-height:1.7; }
-
-    .hunting-offers { background: linear-gradient(135deg, #e8f2ea, #f0f5f1); }
-    .hunt-category {
-      background:#fff;
-      border-radius:15px;
-      padding:2.3rem;
-      margin-bottom:2rem;
-      border-left:5px solid #d4af37;
-      box-shadow:0 8px 25px rgba(45,73,52,.1);
-      transition:all .2s ease;
-    }
-    .hunt-category:hover { transform:translateY(-3px); box-shadow:0 12px 35px rgba(45,73,52,.14); }
-    .hunt-category h3 { font-family:'Crimson Text', serif; color:#2d4934; margin-bottom:1rem; font-size:1.8rem; font-weight:700; }
-    .hunt-period {
-      background: linear-gradient(135deg, #4a7c59, #5d9068);
-      color:#fff; padding:6px 18px;
-      border-radius:20px;
+    .brand small{display:block;color:var(--muted);font-weight:600;letter-spacing:.2px;margin-top:2px}
+    nav ul{list-style:none;margin:0;padding:0;display:flex;gap:14px;flex-wrap:wrap}
+    nav a{
       display:inline-block;
-      font-size:.9rem; font-weight:700;
-      margin-bottom:1.2rem;
-    }
-    .hunt-details { display:grid; grid-template-columns:2fr 1fr; gap:2.2rem; margin-top:1rem; }
-    .hunt-description { line-height:1.8; color:#4a5d51; font-size:1.03rem; }
-    .package-includes {
-      background: linear-gradient(135deg, #f8faf9, #e8f2ea);
-      padding:1.8rem;
+      padding:8px 10px;
       border-radius:12px;
-      border:1px solid #d4e6d7;
+      color:var(--muted);
+      border:1px solid transparent;
     }
-    .package-includes h4 { color:#2d4934; margin-bottom:1rem; font-size:1.05rem; font-weight:800; }
-    .package-includes ul { list-style:none; padding:0; }
-    .package-includes li { padding:6px 0; padding-left:25px; color:#4a5d51; font-weight:600; position:relative; }
-    .package-includes li::before { content:"✓"; color:#4a7c59; font-weight:900; position:absolute; left:0; }
+    nav a:hover{
+      color:var(--text);
+      border-color: rgba(154,211,154,.18);
+      background: rgba(154,211,154,.06);
+    }
+    .lang{
+      display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    }
+    .lang button{
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      border-radius:12px;
+      padding:8px 10px;
+      display:flex;align-items:center;gap:8px;
+      transition:.15s ease;
+    }
+    .lang button:hover{
+      transform: translateY(-1px);
+      border-color: rgba(154,211,154,.22);
+      background: rgba(154,211,154,.06);
+    }
+    .lang button.active{
+      border-color: rgba(154,211,154,.40);
+      background: rgba(154,211,154,.10);
+      box-shadow: 0 10px 18px rgba(0,0,0,.25);
+    }
+    .flag{font-size:18px;line-height:1}
+    .hero{
+      padding:64px 0 34px 0;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-card{padding:26px}
+    .kicker{
+      display:inline-flex;gap:8px;align-items:center;
+      color:var(--muted);
+      border:1px solid rgba(154,211,154,.18);
+      background: rgba(154,211,154,.05);
+      padding:6px 10px;border-radius:999px;
+      font-weight:700;font-size:12px;
+    }
+    h1{margin:12px 0 10px 0;font-size:42px;line-height:1.08}
+    .lead{color:var(--muted);font-size:16px;max-width:60ch}
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 14px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:800;
+    }
+    .btn.primary{
+      border-color: rgba(154,211,154,.35);
+      background: linear-gradient(135deg, rgba(154,211,154,.22), rgba(154,211,154,.06));
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .hero-side{
+      padding:22px;
+      display:flex;flex-direction:column;gap:14px;
+    }
+    .hero-side .box{
+      padding:16px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.18);
+    }
+    .hero-side .box h3{margin:0 0 6px 0;font-size:15px}
+    .hero-side .box p{margin:0;color:var(--muted);font-size:13px}
+    section{padding:34px 0}
+    .section-title{font-size:26px;margin:0 0 8px 0}
+    .section-sub{margin:0 0 16px 0;color:var(--muted)}
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    .tile{padding:18px}
+    .tile h3{margin:0 0 6px 0}
+    .tile p{margin:0;color:var(--muted);font-size:14px}
+    footer{
+      padding:28px 0 40px 0;
+      border-top:1px solid rgba(255,255,255,.06);
+      color:var(--muted);
+    }
+    .footer-row{
+      display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+      align-items:center;
+    }
 
-    .price-note {
-      background: linear-gradient(135deg, #2d4934, #4a7c59);
-      color:#fff; padding:2.3rem; border-radius:15px;
-      text-align:center; margin-top:2.5rem;
-      box-shadow:0 10px 30px rgba(45,73,52,.3);
-    }
-    .price-note h3 { font-family:'Crimson Text', serif; font-size:2rem; margin-bottom:1rem; color:#d4af37; }
-    .price-note p { font-size:1.1rem; line-height:1.7; color:#e8f2ea; }
-
-    .contact {
-      background: linear-gradient(135deg, #1a2e1f, #2d4934);
-      color:#fff; position:relative;
-    }
-    .contact::before {
-      content:''; position:absolute; inset:0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,.1), transparent 50%);
-    }
-    .contact .section-title h2 { color:#fff; text-shadow:2px 2px 4px rgba(0,0,0,.3); }
-    .contact .section-title p { color:#e8f2ea; font-size:1.2rem; font-weight:600; }
-
-    .contact-content { display:grid; grid-template-columns:1fr 1fr; gap:3rem; position:relative; z-index:2; }
-    .contact-info h3 { color:#d4af37; margin-bottom:1.5rem; font-size:1.55rem; font-weight:800; }
-    .contact-item {
-      margin-bottom:1.3rem;
-      padding:1.2rem;
-      background: rgba(255,255,255,.1);
-      border-radius:10px;
-      border-left:4px solid #d4af37;
-    }
-    .contact-item strong { color:#d4af37; display:block; margin-bottom:.35rem; font-size:1rem; }
-
-    .contact-form {
-      background: rgba(255,255,255,.1);
-      padding:2rem;
-      border-radius:15px;
-      backdrop-filter: blur(10px);
-    }
-    .contact-form h3 { color:#d4af37; margin-bottom:1.2rem; font-size:1.55rem; font-weight:800; }
-    .form-group { margin-bottom:1.1rem; }
-    .form-group label { display:block; margin-bottom:.4rem; color:#d4af37; font-weight:800; }
-    .form-group input, .form-group textarea {
-      width:100%; padding:12px;
-      border:2px solid rgba(212,175,55,.3);
-      border-radius:10px;
-      background: rgba(255,255,255,.92);
-      color:#2d4934; font-size:1rem;
-      transition:all .2s ease;
-    }
-    .form-group input:focus, .form-group textarea:focus {
-      outline:none; border-color:#d4af37;
-      box-shadow:0 0 15px rgba(212,175,55,.25);
-    }
-    .form-group textarea { height:120px; resize:vertical; }
-
-    .checkbox-group { display:flex; align-items:flex-start; gap:10px; margin-bottom:1.1rem; }
-    .checkbox-group input[type="checkbox"] { width:auto; margin-top:5px; }
-    .checkbox-group label { color:#e8f2ea; font-size:.9rem; line-height:1.4; font-weight:500; }
-
-    footer { background:#1a2d20; color:#a8b5ab; padding:3rem 0 1rem; }
-    .footer-content { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:2rem; margin-bottom:2rem; }
-    .footer-section h3 { color:#d4af37; margin-bottom:1rem; font-size:1.2rem; font-weight:900; }
-    .footer-section p { margin-bottom:.6rem; line-height:1.6; }
-    .footer-section a { color:#a8b5ab; text-decoration:none; transition:color .2s ease; }
-    .footer-section a:hover { color:#d4af37; }
-    .footer-bottom { text-align:center; padding-top:2rem; border-top:1px solid #2d4934; color:#7a8a7d; }
-
-    @media (max-width: 1024px) {
-      .hunt-details, .about-content, .contact-content { grid-template-columns:1fr; gap:2rem; }
-      .hero-content h1 { font-size:3rem; }
-    }
-    @media (max-width: 768px) {
-      .nav-links { display:none; }
-      .language-selector { margin-right:1rem; }
-      .mobile-menu { display:flex; }
-      .hero-content h1 { font-size:2.35rem; }
-      .section-title h2 { font-size:2.2rem; }
-      section { padding:60px 0; }
-      .nav-left { gap:1rem; }
+    @media (max-width: 920px){
+      .hero-grid{grid-template-columns:1fr}
+      h1{font-size:36px}
+      .grid3{grid-template-columns:1fr}
+      nav ul{gap:8px}
     }
   </style>
 </head>
 
 <body>
-  <header id="header">
-    <nav class="container">
-      <div class="nav-left">
-        <div class="logo" id="brandName">Pomeranian Hunter</div>
-        <ul class="nav-links">
-          <li><a href="#home" data-i18n="nav.home">Strona glowna</a></li>
-          <li><a href="#about" data-i18n="nav.about">O nas</a></li>
-          <li><a href="#services" data-i18n="nav.services">Uslugi</a></li>
-          <li><a href="#offers" data-i18n="nav.offers">Oferta</a></li>
-          <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
+<header>
+  <div class="container">
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-badge">🐗</div>
+        <div>
+          <div>Pomeranian Hunter</div>
+          <small id="brandSub">Hunting Agency • Poland</small>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#home" data-i18n="nav.home">Home</a></li>
+          <li><a href="#about" data-i18n="nav.about">About us</a></li>
+          <li><a href="#services" data-i18n="nav.services">Services</a></li>
+          <li><a href="#offers" data-i18n="nav.offers">Offers</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
-      </div>
+      </nav>
 
-      <div class="language-selector">
-        <div class="lang-dropdown" id="langDropdown">
-          <div class="lang-current" id="langCurrent">
-            <span class="flag">🇵🇱</span>
-            <span class="code">PL</span>
-            <span class="arrow">▼</span>
-          </div>
-
-          <div class="lang-options">
-            <a href="#" class="lang-option" data-lang="pl"><span class="flag">🇵🇱</span><span class="name">Polski</span></a>
-            <a href="#" class="lang-option" data-lang="en"><span class="flag">🇬🇧</span><span class="name">English</span></a>
-            <a href="#" class="lang-option" data-lang="no"><span class="flag">🇳🇴</span><span class="name">Norsk</span></a>
-            <a href="#" class="lang-option" data-lang="sv"><span class="flag">🇸🇪</span><span class="name">Svenska</span></a>
-            <a href="#" class="lang-option" data-lang="de"><span class="flag">🇩🇪</span><span class="name">Deutsch</span></a>
-            <a href="#" class="lang-option" data-lang="nl"><span class="flag">🇳🇱</span><span class="name">Nederlands</span></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="mobile-menu" id="mobileMenu">
-        <span></span><span></span><span></span>
-      </div>
-    </nav>
-  </header>
-
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h1 data-i18n="hero.title">Polowania w Polsce</h1>
-      <p data-i18n="hero.subtitle">
-        Profesjonalna organizacja polowan w najlepszych lowiskach Polski. Doswiadczenie, logistyka i przewodnicy.
-      </p>
-      <a href="#offers" class="btn" data-i18n="hero.cta">Poznaj oferte</a>
+      <!-- FLAGS LANGUAGE SWITCH -->
+      <div class="lang" id="langSwitcher" aria-label="Language selector"></div>
     </div>
-  </section>
+  </div>
+</header>
 
-  <section id="about" class="about">
+<main id="home">
+  <section class="hero">
     <div class="container">
-      <div class="about-content">
-        <div class="about-text">
-          <h3 data-i18n="about.subtitle">Tradycja i profesjonalizm</h3>
-          <h2 data-i18n="about.title">Polowania z Doswiadczeniem</h2>
-          <p data-i18n="about.text1">
-            Jestesmy biurem organizujacym polowania w calej Polsce. Wspolpracujemy z dobrymi kolami lowieckimi i osrodkami.
+      <div class="hero-grid">
+        <div class="card hero-card">
+          <div class="kicker">🌲 <span data-i18n="hero.kicker">Licensed • Safe • Traditional</span></div>
+          <h1 data-i18n="hero.title">Hunting in Poland</h1>
+          <p class="lead" data-i18n="hero.subtitle">
+            Professional hunting organization in the best hunting grounds in Poland. Years of experience, licensed activity and traditional approach to hunting.
           </p>
-          <p data-i18n="about.text2">
-            Doswiadczenie i znajomosc lowisk = konkretne efekty i bezpieczna organizacja.
-          </p>
-          <p data-i18n="about.text3">
-            Bierzemy na siebie logistyke: noclegi, wyzywienie, transport w lowisku, dokumenty i przygotowanie trofeow.
-          </p>
-          <a href="#contact" class="btn btn-outline" data-i18n="about.cta">Kontakt</a>
+          <div class="cta-row">
+            <a class="btn primary" href="#offers" data-i18n="hero.cta">Discover our offer</a>
+            <a class="btn" href="#contact" data-i18n="hero.cta2">Contact us</a>
+          </div>
         </div>
-        <div class="about-image">
-          <span>Zdjecia z polowan 🦌 🐗 🦆</span>
+
+        <div class="card hero-side">
+          <div class="box">
+            <h3 data-i18n="hero.box1Title">For foreign clients</h3>
+            <p data-i18n="hero.box1Text">We support English and French communication. We cooperate with proven hunting clubs across Poland.</p>
+          </div>
+          <div class="box">
+            <h3 data-i18n="hero.box2Title">Full organization</h3>
+            <p data-i18n="hero.box2Text">Accommodation, transport in the hunting area, guides, and trophy preparation.</p>
+          </div>
+          <div class="box">
+            <h3 data-i18n="hero.box3Title">Clear rules</h3>
+            <p data-i18n="hero.box3Text">Transparent packages and prices – no surprises.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="services" class="services">
+  <section id="about">
     <div class="container">
-      <div class="section-title">
-        <h2 data-i18n="services.title">Nasze Uslugi</h2>
-        <p data-i18n="services.subtitle">Kompleksowa organizacja polowan z pelnym serwisem</p>
-      </div>
-
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">🎯</div>
-          <h3 data-i18n="services.service1.title">Polowania Indywidualne</h3>
-          <p data-i18n="services.service1.desc">Polowanie dopasowane do Ciebie + opieka przewodnika.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">👥</div>
-          <h3 data-i18n="services.service2.title">Polowania Grupowe</h3>
-          <p data-i18n="services.service2.desc">Organizacja wyjazdow dla grup z logistyka i tradycja.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🏠</div>
-          <h3 data-i18n="services.service3.title">Zakwaterowanie</h3>
-          <p data-i18n="services.service3.desc">Sprawdzone noclegi blisko lowisk.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🍽️</div>
-          <h3 data-i18n="services.service4.title">Wyzywienie</h3>
-          <p data-i18n="services.service4.desc">Regionalna kuchnia i porzadne jedzenie.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🏆</div>
-          <h3 data-i18n="services.service5.title">Trofea</h3>
-          <p data-i18n="services.service5.desc">Preparacja trofeow + opcja transportu.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">📋</div>
-          <h3 data-i18n="services.service6.title">Formalnosci</h3>
-          <p data-i18n="services.service6.desc">Zalatwiamy dokumenty, pozwolenia i papierologie.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="offers" class="hunting-offers">
-    <div class="container">
-      <div class="section-title">
-        <h2 data-i18n="offers.title">Oferta Polowan</h2>
-        <p data-i18n="offers.subtitle">Polowania organizowane profesjonalnie w najlepszych rejonach</p>
-      </div>
-
-      <div class="hunt-category">
-        <h3>Sarna (rogacz)</h3>
-        <div class="hunt-period">Sezon: maj - wrzesien</div>
-        <div class="hunt-details">
-          <div class="hunt-description">
-            <p>Najlepszy okres to ruja (lipiec/sierpien). Zasiadka lub podchod, zalezne od terenu i preferencji.</p>
-          </div>
-          <div class="package-includes">
-            <h4>Pakiet zawiera:</h4>
-            <ul>
-              <li>Przewodnik</li>
-              <li>Transport w lowisku</li>
-              <li>Noclegi</li>
-              <li>Wyzywienie</li>
-              <li>Dokumenty</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="hunt-category">
-        <h3>Jelen (rykowisko)</h3>
-        <div class="hunt-period">Szczyt: wrzesien - pazdziernik</div>
-        <div class="hunt-details">
-          <div class="hunt-description">
-            <p>Rykowisko to najmocniejsza forma polowania na byki. Organizujemy w sprawdzonych kompleksach lesnych.</p>
-          </div>
-          <div class="package-includes">
-            <h4>Pakiet zawiera:</h4>
-            <ul>
-              <li>Przewodnik</li>
-              <li>Transport terenowy</li>
-              <li>Noclegi</li>
-              <li>Wyzywienie</li>
-              <li>Dokumenty</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="price-note">
-        <h3 data-i18n="offers.pricing">Wycena indywidualna</h3>
-        <p data-i18n="offers.pricingText">
-          Ceny zalezne od terminu, liczby dni, standardu noclegu i uslug dodatkowych. Daj parametry — dostajesz konkretna wycene.
+      <p class="section-sub" data-i18n="about.subtitle">Tradition and professionalism</p>
+      <h2 class="section-title" data-i18n="about.title">Hunting with Experience</h2>
+      <div class="card" style="padding:18px">
+        <p style="margin:0 0 10px 0;color:var(--muted)" data-i18n="about.text1">
+          We are a licensed agency organizing hunts throughout Poland. We cooperate with the best hunting clubs and game breeding centers, maintaining traditional hunting values.
         </p>
-        <a href="#contact" class="btn" style="margin-top:1rem;" data-i18n="offers.pricingCta">Zapytaj o wycene</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="contact">
-    <div class="container">
-      <div class="section-title">
-        <h2 data-i18n="contact.title">Kontakt</h2>
-        <p data-i18n="contact.subtitle">Napisz — odpowiemy i dopniemy wyjazd</p>
-      </div>
-
-      <div class="contact-content">
-        <div class="contact-info">
-          <h3 data-i18n="contact.contactData">Dane kontaktowe</h3>
-
-          <div class="contact-item">
-            <strong>📧 Email</strong>
-            info@pomeranian-hunter.com
-          </div>
-
-          <div class="contact-item">
-            <strong>📞 Telefon</strong>
-            +48 XXX XXX XXX
-          </div>
-
-          <div class="contact-item">
-            <strong>📍 Lokalizacja</strong>
-            Kolobrzeg / Pomorze, Polska
-          </div>
-        </div>
-
-        <div class="contact-form">
-          <h3 data-i18n="contact.formTitle">Formularz</h3>
-          <form id="contactForm">
-            <div class="form-group">
-              <label for="email" data-i18n="contact.emailLabel">Email *</label>
-              <input type="email" id="email" name="email" required />
-            </div>
-
-            <div class="form-group">
-              <label for="phone" data-i18n="contact.phoneLabel">Telefon</label>
-              <input type="tel" id="phone" name="phone" />
-            </div>
-
-            <div class="form-group">
-              <label for="message" data-i18n="contact.messageLabel">Opis polowania *</label>
-              <textarea id="message" name="message" required data-i18n-placeholder="contact.messagePlaceholder"
-                placeholder="Opisz: gatunek, termin, liczba osob, standard noclegu..."></textarea>
-            </div>
-
-            <div class="checkbox-group">
-              <input type="checkbox" id="consent" required />
-              <label for="consent" data-i18n="contact.consentLabel">
-                Zgadzam sie na kontakt w sprawie organizacji polowania.
-              </label>
-            </div>
-
-            <button type="submit" class="btn" data-i18n="contact.submitBtn">Wyslij</button>
-          </form>
+        <p style="margin:0 0 10px 0;color:var(--muted)" data-i18n="about.text2">
+          Our years of experience, professionalism and thorough knowledge of the best hunting grounds guarantee unforgettable hunting experiences in safe conditions.
+        </p>
+        <p style="margin:0;color:var(--muted)" data-i18n="about.text3">
+          We offer full organizational support - from comfortable accommodation, through traditional hunting cuisine, to the most experienced guides.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="#contact" data-i18n="about.cta">Contact us</a>
         </div>
       </div>
     </div>
   </section>
 
-  <footer>
+  <section id="services">
     <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>🦌 Pomeranian Hunter</h3>
-          <p data-i18n="footer.company">
-            Organizacja polowan w Polsce dla klientow zagranicznych. Logistyka, przewodnicy, noclegi.
-          </p>
-        </div>
+      <h2 class="section-title" data-i18n="services.title">Services</h2>
+      <p class="section-sub" data-i18n="services.subtitle">Everything you need for a successful hunt</p>
 
-        <div class="footer-section">
-          <h3 data-i18n="footer.navigation">Nawigacja</h3>
-          <p><a href="#about" data-i18n="nav.about">O nas</a></p>
-          <p><a href="#services" data-i18n="nav.services">Uslugi</a></p>
-          <p><a href="#offers" data-i18n="nav.offers">Oferta</a></p>
-          <p><a href="#contact" data-i18n="nav.contact">Kontakt</a></p>
+      <div class="grid3">
+        <div class="card tile">
+          <h3 data-i18n="services.s1Title">Hunt organization</h3>
+          <p data-i18n="services.s1Text">Planning, paperwork support, safe logistics, experienced guides.</p>
         </div>
-
-        <div class="footer-section">
-          <h3 data-i18n="footer.legal">Informacje</h3>
-          <p>info@pomeranian-hunter.com</p>
+        <div class="card tile">
+          <h3 data-i18n="services.s2Title">Accommodation & food</h3>
+          <p data-i18n="services.s2Text">Good standard hotels / guesthouses, traditional cuisine on request.</p>
         </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>© <span id="year"></span> Pomeranian Hunter. <span data-i18n="footer.copyright">All rights reserved.</span></p>
+        <div class="card tile">
+          <h3 data-i18n="services.s3Title">Transport & trophies</h3>
+          <p data-i18n="services.s3Text">Transport in the hunting area and trophy preparation coordination.</p>
+        </div>
       </div>
     </div>
-  </footer>
+  </section>
 
-  <script>
-    // --- SAFE i18n (zero śmieci w HTML, zero rozjechanego JS) ---
-    let currentLanguage = 'pl';
+  <section id="offers">
+    <div class="container">
+      <h2 class="section-title" data-i18n="offers.title">Offers</h2>
+      <p class="section-sub" data-i18n="offers.subtitle">Packages and individual hunts – ask for the current price list</p>
 
-    const translations = {
-      pl: {
-        nav: { home:'Strona glowna', about:'O nas', services:'Uslugi', offers:'Oferta', contact:'Kontakt' },
-        hero: {
-          title:'Polowania w Polsce',
-          subtitle:'Profesjonalna organizacja polowan w najlepszych lowiskach Polski. Doswiadczenie, logistyka i przewodnicy.',
-          cta:'Poznaj oferte'
-        },
-        about: {
-          subtitle:'Tradycja i profesjonalizm',
-          title:'Polowania z Doswiadczeniem',
-          text1:'Jestesmy biurem organizujacym polowania w calej Polsce. Wspolpracujemy z dobrymi kolami lowieckimi i osrodkami.',
-          text2:'Doswiadczenie i znajomosc lowisk = konkretne efekty i bezpieczna organizacja.',
-          text3:'Bierzemy na siebie logistyke: noclegi, wyzywienie, transport w lowisku, dokumenty i przygotowanie trofeow.',
-          cta:'Kontakt'
-        },
-        services: {
-          title:'Nasze Uslugi',
-          subtitle:'Kompleksowa organizacja polowan z pelnym serwisem',
-          service1:{ title:'Polowania Indywidualne', desc:'Polowanie dopasowane do Ciebie + opieka przewodnika.' },
-          service2:{ title:'Polowania Grupowe', desc:'Organizacja wyjazdow dla grup z logistyka i tradycja.' },
-          service3:{ title:'Zakwaterowanie', desc:'Sprawdzone noclegi blisko lowisk.' },
-          service4:{ title:'Wyzywienie', desc:'Regionalna kuchnia i porzadne jedzenie.' },
-          service5:{ title:'Trofea', desc:'Preparacja trofeow + opcja transportu.' },
-          service6:{ title:'Formalnosci', desc:'Zalatwiamy dokumenty, pozwolenia i papierologie.' }
-        },
-        offers: {
-          title:'Oferta Polowan',
-          subtitle:'Polowania organizowane profesjonalnie w najlepszych rejonach',
-          pricing:'Wycena indywidualna',
-          pricingText:'Ceny zalezne od terminu, liczby dni, standardu noclegu i uslug dodatkowych. Daj parametry — dostajesz konkretna wycene.',
-          pricingCta:'Zapytaj o wycene'
-        },
-        contact: {
-          title:'Kontakt',
-          subtitle:'Napisz — odpowiemy i dopniemy wyjazd',
-          contactData:'Dane kontaktowe',
-          formTitle:'Formularz',
-          emailLabel:'Email *',
-          phoneLabel:'Telefon',
-          messageLabel:'Opis polowania *',
-          messagePlaceholder:'Opisz: gatunek, termin, liczba osob, standard noclegu...',
-          consentLabel:'Zgadzam sie na kontakt w sprawie organizacji polowania.',
-          submitBtn:'Wyslij',
-          submitMsg:'Dzieki! Odpowiemy w ciagu 24h.'
-        },
-        footer: {
-          company:'Organizacja polowan w Polsce dla klientow zagranicznych. Logistyka, przewodnicy, noclegi.',
-          navigation:'Nawigacja',
-          legal:'Informacje',
-          copyright:'All rights reserved.'
-        }
+      <div class="card" style="padding:18px">
+        <p style="margin:0;color:var(--muted)" data-i18n="offers.text">
+          Contact us to receive the detailed price list and available dates for the 2026/27 season.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title" data-i18n="contact.title">Contact</h2>
+      <p class="section-sub" data-i18n="contact.subtitle">Write to us and we’ll respond quickly</p>
+
+      <div class="card" style="padding:18px">
+        <p style="margin:0 0 10px 0;color:var(--muted)">
+          Email: <strong>info@pomeranian-hunter.com</strong>
+        </p>
+        <p style="margin:0;color:var(--muted)" data-i18n="contact.note">
+          Please include preferred dates, group size, and target game species.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-row">
+      <div>© <span id="year"></span> Pomeranian Hunter</div>
+      <div data-i18n="footer.right">Licensed hunting organization in Poland</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const translations = {
+    en: {
+      brandSub: "Hunting Agency • Poland",
+      nav: { home:"Home", about:"About us", services:"Services", offers:"Offers", contact:"Contact" },
+      hero: {
+        kicker:"Licensed • Safe • Traditional",
+        title:"Hunting in Poland",
+        subtitle:"Professional hunting organization in the best hunting grounds in Poland. Years of experience, licensed activity and traditional approach to hunting.",
+        cta:"Discover our offer",
+        cta2:"Contact us",
+        box1Title:"For foreign clients",
+        box1Text:"We support English and French communication. We cooperate with proven hunting clubs across Poland.",
+        box2Title:"Full organization",
+        box2Text:"Accommodation, transport in the hunting area, guides, and trophy preparation.",
+        box3Title:"Clear rules",
+        box3Text:"Transparent packages and prices – no surprises."
       },
-
-      en: {
-        nav: { home:'Home', about:'About', services:'Services', offers:'Offers', contact:'Contact' },
-        hero: {
-          title:'Hunting in Poland',
-          subtitle:'Professional hunting organization in Poland. Logistics, guides, accommodation and paperwork handled for you.',
-          cta:'See offers'
-        },
-        about: {
-          subtitle:'Tradition and professionalism',
-          title:'Hunting with Experience',
-          text1:'We organize hunts across Poland with trusted local hunting clubs and proven grounds.',
-          text2:'Experience and local knowledge = safer, better organized hunts with clear expectations.',
-          text3:'We handle the logistics: accommodation, meals, transport in the hunting area, paperwork and trophy preparation.',
-          cta:'Contact us'
-        },
-        services: {
-          title:'Our Services',
-          subtitle:'Full-service hunting organization',
-          service1:{ title:'Individual Hunts', desc:'Tailored hunts + dedicated guide.' },
-          service2:{ title:'Group Hunts', desc:'Group trips with full logistics and traditional hunting atmosphere.' },
-          service3:{ title:'Accommodation', desc:'Reliable stays near hunting areas.' },
-          service4:{ title:'Cuisine', desc:'Solid regional food.' },
-          service5:{ title:'Trophies', desc:'Trophy preparation + transport options.' },
-          service6:{ title:'Paperwork', desc:'We handle permits and formalities.' }
-        },
-        offers: {
-          title:'Hunting Offers',
-          subtitle:'Professionally organized hunts in Poland',
-          pricing:'Individual Pricing',
-          pricingText:'Pricing depends on dates, number of days, accommodation standard and extras. Give us your parameters — we send a clear quote.',
-          pricingCta:'Request a quote'
-        },
-        contact: {
-          title:'Contact',
-          subtitle:'Message us — we reply fast',
-          contactData:'Contact details',
-          formTitle:'Inquiry form',
-          emailLabel:'Email *',
-          phoneLabel:'Phone',
-          messageLabel:'Hunt description *',
-          messagePlaceholder:'Describe: game type, dates, group size, accommodation standard...',
-          consentLabel:'I agree to be contacted regarding hunt organization.',
-          submitBtn:'Send',
-          submitMsg:'Thanks! We will reply within 24 hours.'
-        },
-        footer: {
-          company:'Hunting organization in Poland for international clients. Logistics, guides, accommodation.',
-          navigation:'Navigation',
-          legal:'Info',
-          copyright:'All rights reserved.'
-        }
+      about: {
+        subtitle:"Tradition and professionalism",
+        title:"Hunting with Experience",
+        text1:"We are a licensed agency organizing hunts throughout Poland. We cooperate with the best hunting clubs and game breeding centers, maintaining traditional hunting values.",
+        text2:"Our years of experience, professionalism and thorough knowledge of the best hunting grounds guarantee unforgettable hunting experiences in safe conditions.",
+        text3:"We offer full organizational support - from comfortable accommodation, through traditional hunting cuisine, to the most experienced guides.",
+        cta:"Contact us"
       },
-
-      no: {
-        nav: { home:'Hjem', about:'Om oss', services:'Tjenester', offers:'Tilbud', contact:'Kontakt' },
-        hero: {
-          title:'Jakt i Polen',
-          subtitle:'Profesjonell jaktorganisering i Polen. Vi ordner logistikk, guide, overnatting og papirarbeid.',
-          cta:'Se tilbud'
-        },
-        about: {
-          subtitle:'Tradisjon og profesjonalitet',
-          title:'Jakt med erfaring',
-          text1:'Vi organiserer jakt i hele Polen med lokale jaktlag og testede jaktomrader.',
-          text2:'Erfaring og lokalkunnskap = tryggere og bedre planlagte jakter.',
-          text3:'Vi tar oss av: overnatting, mat, transport i omradet, dokumenter og trofebehandling.',
-          cta:'Kontakt oss'
-        },
-        services: {
-          title:'Vare tjenester',
-          subtitle:'Full jaktservice',
-          service1:{ title:'Individuell jakt', desc:'Tilpasset jakt + egen guide.' },
-          service2:{ title:'Gruppejakt', desc:'Grupper med full logistikk og tradisjonell atmosfare.' },
-          service3:{ title:'Overnatting', desc:'Paalitelige steder naer jaktomrader.' },
-          service4:{ title:'Mat', desc:'God regional mat.' },
-          service5:{ title:'Trofeer', desc:'Trofebehandling + transportmuligheter.' },
-          service6:{ title:'Papirarbeid', desc:'Vi ordner tillatelser og formaliteter.' }
-        },
-        offers: {
-          title:'Jakttilbud',
-          subtitle:'Profesjonelt organisert jakt i Polen',
-          pricing:'Individuell prising',
-          pricingText:'Pris avhenger av datoer, antall dager, standard og tillegg. Send parametere — fa et tydelig tilbud.',
-          pricingCta:'Be om tilbud'
-        },
-        contact: {
-          title:'Kontakt',
-          subtitle:'Skriv til oss — raskt svar',
-          contactData:'Kontaktinfo',
-          formTitle:'Kontaktskjema',
-          emailLabel:'E-post *',
-          phoneLabel:'Telefon',
-          messageLabel:'Jaktbeskrivelse *',
-          messagePlaceholder:'Beskriv: vilt, datoer, antall personer, standard...',
-          consentLabel:'Jeg samtykker til å bli kontaktet om jaktorganisering.',
-          submitBtn:'Send',
-          submitMsg:'Takk! Vi svarer innen 24 timer.'
-        },
-        footer: {
-          company:'Jaktorganisering i Polen for internasjonale kunder. Logistikk, guider, overnatting.',
-          navigation:'Navigasjon',
-          legal:'Info',
-          copyright:'Alle rettigheter forbeholdt.'
-        }
+      services:{
+        title:"Services",
+        subtitle:"Everything you need for a successful hunt",
+        s1Title:"Hunt organization",
+        s1Text:"Planning, paperwork support, safe logistics, experienced guides.",
+        s2Title:"Accommodation & food",
+        s2Text:"Good standard hotels / guesthouses, traditional cuisine on request.",
+        s3Title:"Transport & trophies",
+        s3Text:"Transport in the hunting area and trophy preparation coordination."
       },
-
-      sv: {
-        nav: { home:'Hem', about:'Om oss', services:'Tjanster', offers:'Erbjudanden', contact:'Kontakt' },
-        hero: {
-          title:'Jakt i Polen',
-          subtitle:'Professionell jaktorganisation i Polen. Vi ordnar logistik, guide, boende och papper.',
-          cta:'Se erbjudanden'
-        },
-        about: {
-          subtitle:'Tradition och professionalism',
-          title:'Jakt med erfarenhet',
-          text1:'Vi organiserar jakt i hela Polen med lokala jaktlag och beprovade marker.',
-          text2:'Erfarenhet och lokalkannedom = tryggare, battre organiserade jakter.',
-          text3:'Vi tar hand om: boende, mat, transport, dokument och trofer.',
-          cta:'Kontakta oss'
-        },
-        services: {
-          title:'Vara tjanster',
-          subtitle:'Fullservice jaktorganisation',
-          service1:{ title:'Individuell jakt', desc:'Anpassad jakt + egen guide.' },
-          service2:{ title:'Gruppjakt', desc:'Grupper med full logistik och traditionell stamning.' },
-          service3:{ title:'Boende', desc:'Paalitliga boenden nara markerna.' },
-          service4:{ title:'Mat', desc:'Rejal regional mat.' },
-          service5:{ title:'Trofer', desc:'Trofehantering + transportalternativ.' },
-          service6:{ title:'Papper', desc:'Vi hanterar tillstand och formaliteter.' }
-        },
-        offers: {
-          title:'Jakterbjudanden',
-          subtitle:'Professionellt organiserad jakt i Polen',
-          pricing:'Individuell prissattning',
-          pricingText:'Pris beror pa datum, antal dagar, standard och tillagg. Skicka detaljer — fa en tydlig offert.',
-          pricingCta:'Be om offert'
-        },
-        contact: {
-          title:'Kontakt',
-          subtitle:'Skriv till oss — snabbt svar',
-          contactData:'Kontaktuppgifter',
-          formTitle:'Kontaktformular',
-          emailLabel:'E-post *',
-          phoneLabel:'Telefon',
-          messageLabel:'Jaktbeskrivning *',
-          messagePlaceholder:'Beskriv: vilt, datum, antal personer, standard...',
-          consentLabel:'Jag samtycker till att bli kontaktad om jaktorganisation.',
-          submitBtn:'Skicka',
-          submitMsg:'Tack! Vi svarar inom 24 timmar.'
-        },
-        footer: {
-          company:'Jaktorganisation i Polen for internationella kunder. Logistik, guider, boende.',
-          navigation:'Navigation',
-          legal:'Info',
-          copyright:'Alla rattigheter forbehallna.'
-        }
+      offers:{
+        title:"Offers",
+        subtitle:"Packages and individual hunts – ask for the current price list",
+        text:"Contact us to receive the detailed price list and available dates for the 2026/27 season."
       },
-
-      de: {
-        nav: { home:'Start', about:'Uber uns', services:'Leistungen', offers:'Angebote', contact:'Kontakt' },
-        hero: {
-          title:'Jagd in Polen',
-          subtitle:'Professionelle Jagdorganisation in Polen. Wir ubernehmen Logistik, Guide, Unterkunft und Formalitaten.',
-          cta:'Angebote ansehen'
-        },
-        about: {
-          subtitle:'Tradition und Professionalitat',
-          title:'Jagd mit Erfahrung',
-          text1:'Wir organisieren Jagden in ganz Polen mit lokalen Jagdvereinen und bewahrten Revieren.',
-          text2:'Erfahrung und Ortskenntnis = sicherere, besser organisierte Jagden.',
-          text3:'Wir ubernehmen: Unterkunft, Essen, Transport, Dokumente und Trophabearbeitung.',
-          cta:'Kontakt'
-        },
-        services: {
-          title:'Unsere Leistungen',
-          subtitle:'Jagdorganisation mit Full-Service',
-          service1:{ title:'Einzeljagd', desc:'Individuell angepasst + eigener Guide.' },
-          service2:{ title:'Gruppenjagd', desc:'Gruppen mit kompletter Logistik und Tradition.' },
-          service3:{ title:'Unterkunft', desc:'Zuverlassige Unterkunfte nahe der Reviere.' },
-          service4:{ title:'Essen', desc:'Ordentliche regionale Kuche.' },
-          service5:{ title:'Trophäen', desc:'Trophabearbeitung + Transportoptionen.' },
-          service6:{ title:'Formalitaten', desc:'Genehmigungen und Papierkram erledigen wir.' }
-        },
-        offers: {
-          title:'Jagdangebote',
-          subtitle:'Professionell organisierte Jagden in Polen',
-          pricing:'Individuelle Preise',
-          pricingText:'Preis hangt ab von Terminen, Tagen, Standard und Extras. Senden Sie Details — wir schicken ein klares Angebot.',
-          pricingCta:'Angebot anfragen'
-        },
-        contact: {
-          title:'Kontakt',
-          subtitle:'Schreiben Sie uns — schnelle Antwort',
-          contactData:'Kontaktdaten',
-          formTitle:'Kontaktformular',
-          emailLabel:'E-Mail *',
-          phoneLabel:'Telefon',
-          messageLabel:'Jagdbeschreibung *',
-          messagePlaceholder:'Beschreiben Sie: Wildart, Termine, Personenanzahl, Standard...',
-          consentLabel:'Ich stimme zu, bezuglich Jagdorganisation kontaktiert zu werden.',
-          submitBtn:'Senden',
-          submitMsg:'Danke! Wir antworten innerhalb von 24 Stunden.'
-        },
-        footer: {
-          company:'Jagdorganisation in Polen fur internationale Kunden. Logistik, Guides, Unterkunft.',
-          navigation:'Navigation',
-          legal:'Info',
-          copyright:'Alle Rechte vorbehalten.'
-        }
+      contact:{
+        title:"Contact",
+        subtitle:"Write to us and we’ll respond quickly",
+        note:"Please include preferred dates, group size, and target game species."
       },
+      footer:{ right:"Licensed hunting organization in Poland" }
+    },
 
-      nl: {
-        nav: { home:'Home', about:'Over ons', services:'Diensten', offers:'Aanbiedingen', contact:'Contact' },
-        hero: {
-          title:'Jacht in Polen',
-          subtitle:'Professionele jachtorganisatie in Polen. Wij regelen logistiek, gids, verblijf en papierwerk.',
-          cta:'Bekijk aanbod'
-        },
-        about: {
-          subtitle:'Traditie en professionaliteit',
-          title:'Jacht met ervaring',
-          text1:'Wij organiseren jacht in heel Polen met lokale jachtverenigingen en bewezen gebieden.',
-          text2:'Ervaring en lokale kennis = veiliger en beter georganiseerd.',
-          text3:'Wij regelen: verblijf, maaltijden, transport, documenten en trofee-afhandeling.',
-          cta:'Neem contact op'
-        },
-        services: {
-          title:'Onze diensten',
-          subtitle:'Volledige jachtservice',
-          service1:{ title:'Individuele jacht', desc:'Op maat + vaste gids.' },
-          service2:{ title:'Groepsjacht', desc:'Groepen met volledige logistiek en traditionele sfeer.' },
-          service3:{ title:'Accommodatie', desc:'Betrouwbare overnachtingen dichtbij.' },
-          service4:{ title:'Eten', desc:'Goede regionale keuken.' },
-          service5:{ title:'Trofeeën', desc:'Trofee-afhandeling + transportopties.' },
-          service6:{ title:'Formaliteiten', desc:'Wij regelen vergunningen en papierwerk.' }
-        },
-        offers: {
-          title:'Jachtaanbiedingen',
-          subtitle:'Professioneel georganiseerde jacht in Polen',
-          pricing:'Individuele prijzen',
-          pricingText:'Prijs hangt af van data, aantal dagen, standaard en extras. Stuur details — wij sturen een duidelijke offerte.',
-          pricingCta:'Offerte aanvragen'
-        },
-        contact: {
-          title:'Contact',
-          subtitle:'Stuur een bericht — snel antwoord',
-          contactData:'Contactgegevens',
-          formTitle:'Contactformulier',
-          emailLabel:'E-mail *',
-          phoneLabel:'Telefoon',
-          messageLabel:'Jachtomschrijving *',
-          messagePlaceholder:'Beschrijf: wild, data, aantal personen, standaard...',
-          consentLabel:'Ik ga akkoord om gecontacteerd te worden over jachtorganisatie.',
-          submitBtn:'Verstuur',
-          submitMsg:'Bedankt! We reageren binnen 24 uur.'
-        },
-        footer: {
-          company:'Jachtorganisatie in Polen voor internationale klanten. Logistiek, gidsen, verblijf.',
-          navigation:'Navigatie',
-          legal:'Info',
-          copyright:'Alle rechten voorbehouden.'
-        }
-      }
-    };
+    pl: {
+      brandSub: "Biuro Polowan • Polska",
+      nav: { home:"Start", about:"O nas", services:"Uslugi", offers:"Oferta", contact:"Kontakt" },
+      hero: {
+        kicker:"Licencjonowane • Bezpieczne • Tradycyjne",
+        title:"Polowania w Polsce",
+        subtitle:"Profesjonalna organizacja polowan w najlepszych lowiskach w Polsce. Doswiadczenie, legalna dzialalnosc i tradycyjne podejscie do lowiectwa.",
+        cta:"Zobacz oferte",
+        cta2:"Skontaktuj sie",
+        box1Title:"Dla klientow zagranicznych",
+        box1Text:"Obslugujemy komunikacje po angielsku i po francusku. Wspolpracujemy ze sprawdzonymi kolami lowieckimi w calej Polsce.",
+        box2Title:"Pelna organizacja",
+        box2Text:"Zakwaterowanie, transport w lowisku, przewodnicy i przygotowanie trofeum.",
+        box3Title:"Jasne zasady",
+        box3Text:"Przejrzyste pakiety i ceny – bez niespodzianek."
+      },
+      about: {
+        subtitle:"Tradycja i profesjonalizm",
+        title:"Polowania z doswiadczeniem",
+        text1:"Jestesmy licencjonowanym biurem organizujacym polowania w calej Polsce. Wspolpracujemy z najlepszymi kolami lowieckimi i osrodkami hodowli zwierzyny, dbajac o tradycyjne wartosci.",
+        text2:"Wieloletnie doswiadczenie, profesjonalizm i dobra znajomosc lowisk gwarantuja niezapomniane polowania w bezpiecznych warunkach.",
+        text3:"Zapewniamy pelne wsparcie organizacyjne – od wygodnego noclegu, przez tradycyjna kuchnie, po doswiadczonych przewodnikow.",
+        cta:"Kontakt"
+      },
+      services:{
+        title:"Uslugi",
+        subtitle:"Wszystko, czego potrzebujesz na udane polowanie",
+        s1Title:"Organizacja polowania",
+        s1Text:"Plan, wsparcie formalne, bezpieczna logistyka, doswiadczeni przewodnicy.",
+        s2Title:"Nocleg i wyzywienie",
+        s2Text:"Dobry standard hoteli/pensjonatow, tradycyjna kuchnia na zyczenie.",
+        s3Title:"Transport i trofea",
+        s3Text:"Transport w lowisku oraz koordynacja przygotowania trofeum."
+      },
+      offers:{
+        title:"Oferta",
+        subtitle:"Pakiety i polowania indywidualne – zapytaj o aktualny cennik",
+        text:"Skontaktuj sie, aby otrzymac szczegolowy cennik i dostepne terminy na sezon 2026/27."
+      },
+      contact:{
+        title:"Kontakt",
+        subtitle:"Napisz, a szybko odpowiemy",
+        note:"Podaj prosze preferowane terminy, liczbe osob i gatunek zwierzyny."
+      },
+      footer:{ right:"Licencjonowana organizacja polowan w Polsce" }
+    },
 
-    const languageFlags = { pl:'🇵🇱', en:'🇬🇧', no:'🇳🇴', sv:'🇸🇪', de:'🇩🇪', nl:'🇳🇱' };
-
-    function getNested(obj, path) {
-      return path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj);
+    fr: {
+      brandSub: "Agence de chasse • Pologne",
+      nav: { home:"Accueil", about:"A propos", services:"Services", offers:"Offres", contact:"Contact" },
+      hero: {
+        kicker:"Licence • Securite • Tradition",
+        title:"Chasse en Pologne",
+        subtitle:"Organisation professionnelle de chasses dans les meilleurs territoires de Pologne. Experience, activite licenciee et approche traditionnelle.",
+        cta:"Decouvrir nos offres",
+        cta2:"Nous contacter",
+        box1Title:"Pour clients internationaux",
+        box1Text:"Communication en anglais et en francais. Cooperation avec des societes de chasse fiables dans toute la Pologne.",
+        box2Title:"Organisation complete",
+        box2Text:"Hebergement, transport sur le territoire, guides et preparation des trophees.",
+        box3Title:"Regles claires",
+        box3Text:"Forfaits et tarifs transparents – sans surprises."
+      },
+      about: {
+        subtitle:"Tradition et professionnalisme",
+        title:"Chasser avec experience",
+        text1:"Nous sommes une agence licenciee qui organise des chasses dans toute la Pologne. Nous cooperons avec les meilleures societes de chasse et centres d’elevage de gibier, en respectant les valeurs traditionnelles.",
+        text2:"Notre experience, notre professionnalisme et notre connaissance du terrain garantissent des chasses inoubliables et securisees.",
+        text3:"Nous assurons un accompagnement complet : hebergement confortable, cuisine traditionnelle sur demande, et guides experimentes.",
+        cta:"Contact"
+      },
+      services:{
+        title:"Services",
+        subtitle:"Tout ce qu’il faut pour une chasse reussie",
+        s1Title:"Organisation de chasse",
+        s1Text:"Planification, aide administrative, logistique sure, guides experimentes.",
+        s2Title:"Hebergement & repas",
+        s2Text:"Hotels / maisons d’hotes de bon niveau, cuisine traditionnelle sur demande.",
+        s3Title:"Transport & trophees",
+        s3Text:"Transport sur le territoire et coordination de la preparation des trophees."
+      },
+      offers:{
+        title:"Offres",
+        subtitle:"Forfaits et chasses individuelles – demandez la liste de prix",
+        text:"Contactez-nous pour recevoir la liste de prix detaillee et les dates disponibles pour la saison 2026/27."
+      },
+      contact:{
+        title:"Contact",
+        subtitle:"Ecrivez-nous, reponse rapide",
+        note:"Merci d’indiquer les dates souhaitees, la taille du groupe et l’espece cible."
+      },
+      footer:{ right:"Organisation de chasse licenciee en Pologne" }
     }
+  };
 
-    function applyTranslations() {
-      const t = translations[currentLanguage] || translations.pl;
+  const languageButtons = [
+    { code: "pl", flag: "🇵🇱", label: "PL" },
+    { code: "en", flag: "🇬🇧", label: "EN" },
+    { code: "fr", flag: "🇫🇷", label: "FR" }
+  ];
 
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        const value = getNested(t, key);
-        if (typeof value === 'string') el.textContent = value;
-      });
+  const getNested = (obj, path) => path.split('.').reduce((acc, k) => acc && acc[k], obj);
 
-      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-        const key = el.getAttribute('data-i18n-placeholder');
-        const value = getNested(t, key);
-        if (typeof value === 'string') el.setAttribute('placeholder', value);
-      });
+  function setLanguage(lang){
+    const dict = translations[lang] || translations.en;
+    localStorage.setItem("lang", lang);
 
-      // Update selector badge
-      const currentFlag = document.querySelector('#langCurrent .flag');
-      const currentCode = document.querySelector('#langCurrent .code');
-      currentFlag.textContent = languageFlags[currentLanguage] || '🌍';
-      currentCode.textContent = currentLanguage.toUpperCase();
-    }
+    // update <html lang="">
+    document.documentElement.lang = lang;
 
-    function closeDropdown() {
-      document.getElementById('langDropdown').classList.remove('open');
-    }
+    // brand subtitle
+    const brandSub = document.getElementById("brandSub");
+    if (brandSub) brandSub.textContent = dict.brandSub || "";
 
-    // dropdown toggle
-    document.getElementById('langCurrent').addEventListener('click', () => {
-      document.getElementById('langDropdown').classList.toggle('open');
+    // translate all [data-i18n]
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      const value = getNested(dict, key);
+      if (typeof value === "string") el.textContent = value;
     });
 
-    // select language
-    document.querySelectorAll('.lang-option').forEach(a => {
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        const lang = a.getAttribute('data-lang');
-        if (translations[lang]) currentLanguage = lang;
-        applyTranslations();
-        closeDropdown();
-      });
+    // active button
+    document.querySelectorAll("#langSwitcher button").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.lang === lang);
     });
+  }
 
-    // close dropdown outside click
-    document.addEventListener('click', (e) => {
-      const dd = document.getElementById('langDropdown');
-      if (!dd.contains(e.target)) closeDropdown();
+  function renderLanguageButtons(){
+    const holder = document.getElementById("langSwitcher");
+    holder.innerHTML = "";
+
+    languageButtons.forEach(item => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.dataset.lang = item.code;
+      btn.innerHTML = `<span class="flag" aria-hidden="true">${item.flag}</span><strong>${item.label}</strong>`;
+      btn.addEventListener("click", () => setLanguage(item.code));
+      holder.appendChild(btn);
     });
+  }
 
-    // smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href && href !== '#') {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) target.scrollIntoView({ behavior:'smooth', block:'start' });
-        }
-      });
-    });
-
-    // header on scroll
-    window.addEventListener('scroll', () => {
-      const header = document.getElementById('header');
-      if (window.scrollY > 100) header.classList.add('scrolled');
-      else header.classList.remove('scrolled');
-    });
-
-    // mobile menu
-    document.getElementById('mobileMenu').addEventListener('click', () => {
-      const navLinks = document.querySelector('.nav-links');
-      if (navLinks.style.display === 'flex') {
-        navLinks.style.display = 'none';
-      } else {
-        navLinks.style.display = 'flex';
-        navLinks.style.flexDirection = 'column';
-        navLinks.style.position = 'absolute';
-        navLinks.style.top = '100%';
-        navLinks.style.left = '0';
-        navLinks.style.right = '0';
-        navLinks.style.background = 'rgba(45, 73, 52, 0.95)';
-        navLinks.style.padding = '2rem';
-        navLinks.style.backdropFilter = 'blur(10px)';
-      }
-    });
-
-    // form submit
-    document.getElementById('contactForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const t = translations[currentLanguage] || translations.pl;
-      alert(t.contact.submitMsg);
-      e.target.reset();
-    });
-
-    // year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // init
-    applyTranslations();
-  </script>
+  // init
+  document.getElementById("year").textContent = String(new Date().getFullYear());
+  renderLanguageButtons();
+  const saved = localStorage.getItem("lang") || "en";
+  setLanguage(saved);
+</script>
 </body>
 </html>
