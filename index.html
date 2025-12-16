@@ -7,21 +7,23 @@
   <meta name="description" content="Profesjonalne polowania w Polsce. Organizacja polowan: dzik, jelen, sarna. Doswiadczenie, logistyka, przewodnicy." />
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-  <style>
+    <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Lato', sans-serif; line-height:1.6; color:#2d4934; background:#f4f7f5; }
     .container { max-width:1200px; margin:0 auto; padding:0 20px; }
 
     header {
-      <div class="logo" id="brandName">
-  <img src="./logo.png" alt="Pomeranian Hunter logo" class="logo-img"
-       onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<span style=&quot;color:#ffb; font-weight:700; margin-left:8px;&quot;>BRAK logo.png</span>');">
-</div>
-
+      background: linear-gradient(135deg, #2d4934, #4a7c59);
+      color:#fff;
+      position:fixed; width:100%; top:0; z-index:1000;
+      transition:all .3s ease;
+      box-shadow:0 2px 20px rgba(45,73,52,.3);
+    }
     header.scrolled { background: rgba(45,73,52,.95); backdrop-filter: blur(10px); }
 
     nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 0; }
     .nav-left { display:flex; align-items:center; gap:3rem; }
+
     .logo {
       font-family:'Crimson Text', serif;
       font-size:2rem; font-weight:700;
@@ -29,15 +31,17 @@
       display:flex; align-items:center; gap:.5rem;
       user-select:none;
     }
+
+    /* wywalamy emoji-jelenia */
     .logo::before { content: none; }
 
-.logo-img{
-  height: 44px;
-  width: auto;
-  display: block;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,.35));
-}
-
+    /* logo PNG */
+    .logo-img{
+      height: 44px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,.35));
+    }
 
     .nav-links { display:flex; list-style:none; gap:2.5rem; }
     .nav-links a {
