@@ -14,8 +14,6 @@
       line-height:1.6;
       color:#2d4934;
       background:#f4f7f5;
-
-      /* ważne przy fixed header */
       padding-top:110px;
     }
     .container { max-width:1200px; margin:0 auto; padding:0 20px; }
@@ -36,7 +34,7 @@
       display:flex;
       justify-content:space-between;
       align-items:center;
-      padding:1.15rem 0; /* większy header */
+      padding:1.15rem 0;
       position:relative;
     }
 
@@ -62,7 +60,7 @@
     .logo::before{ content:none; }
 
     .logo-img{
-      height:86px;            /* DUŻE jak trzeba */
+      height:86px;
       width:auto;
       display:block;
       filter: drop-shadow(0 12px 24px rgba(0,0,0,.45));
@@ -112,7 +110,6 @@
     }
     .lang-dropdown{ position:relative; display:inline-block; }
 
-    /* WYMUSZENIE EMOJI FONTÓW — to naprawia flagi */
     .flag{
       font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Twemoji Mozilla","EmojiOne Color",sans-serif !important;
       line-height:1;
@@ -184,7 +181,7 @@
     }
 
     .hero{
-      height:calc(100vh - 110px); /* żeby nie wyglądało jak przesunięte */
+      height:calc(100vh - 110px);
       background:
         linear-gradient(135deg, rgba(45,73,52,.62), rgba(74,124,89,.45)),
         radial-gradient(ellipse at center, rgba(212,175,55,.12), transparent),
@@ -469,7 +466,7 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
           <a href="#contact" class="btn btn-outline" data-i18n="about.cta">Kontakt</a>
         </div>
         <div class="about-image">
-          <span>Zdjecia z polowan 🦌 🐗 🦆</span>
+          <span data-i18n="about.photos">Zdjecia z polowan 🦌 🐗 🦆</span>
         </div>
       </div>
     </div>
@@ -530,40 +527,40 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
       </div>
 
       <div class="hunt-category">
-        <h3>Sarna (rogacz)</h3>
-        <div class="hunt-period">Sezon: maj - wrzesien</div>
+        <h3 data-i18n="offers.roe.title">Sarna (rogacz)</h3>
+        <div class="hunt-period" data-i18n="offers.roe.season">Sezon: maj - wrzesien</div>
         <div class="hunt-details">
           <div class="hunt-description">
-            <p>Najlepszy okres to ruja (lipiec/sierpien). Zasiadka lub podchod, zalezne od terenu i preferencji.</p>
+            <p data-i18n="offers.roe.desc">Najlepszy okres to ruja (lipiec/sierpien). Zasiadka lub podchod, zalezne od terenu i preferencji.</p>
           </div>
           <div class="package-includes">
-            <h4>Pakiet zawiera:</h4>
+            <h4 data-i18n="offers.includesTitle">Pakiet zawiera:</h4>
             <ul>
-              <li>Przewodnik</li>
-              <li>Transport w lowisku</li>
-              <li>Noclegi</li>
-              <li>Wyzywienie</li>
-              <li>Dokumenty</li>
+              <li data-i18n="offers.includes.guide">Przewodnik</li>
+              <li data-i18n="offers.includes.transportArea">Transport w lowisku</li>
+              <li data-i18n="offers.includes.accommodation">Noclegi</li>
+              <li data-i18n="offers.includes.meals">Wyzywienie</li>
+              <li data-i18n="offers.includes.documents">Dokumenty</li>
             </ul>
           </div>
         </div>
       </div>
 
       <div class="hunt-category">
-        <h3>Jelen (rykowisko)</h3>
-        <div class="hunt-period">Szczyt: wrzesien - pazdziernik</div>
+        <h3 data-i18n="offers.reddeer.title">Jelen (rykowisko)</h3>
+        <div class="hunt-period" data-i18n="offers.reddeer.peak">Szczyt: wrzesien - pazdziernik</div>
         <div class="hunt-details">
           <div class="hunt-description">
-            <p>Rykowisko to najmocniejsza forma polowania na byki. Organizujemy w sprawdzonych kompleksach lesnych.</p>
+            <p data-i18n="offers.reddeer.desc">Rykowisko to najmocniejsza forma polowania na byki. Organizujemy w sprawdzonych kompleksach lesnych.</p>
           </div>
           <div class="package-includes">
-            <h4>Pakiet zawiera:</h4>
+            <h4 data-i18n="offers.includesTitle">Pakiet zawiera:</h4>
             <ul>
-              <li>Przewodnik</li>
-              <li>Transport terenowy</li>
-              <li>Noclegi</li>
-              <li>Wyzywienie</li>
-              <li>Dokumenty</li>
+              <li data-i18n="offers.includes.guide">Przewodnik</li>
+              <li data-i18n="offers.includes.transportOffroad">Transport terenowy</li>
+              <li data-i18n="offers.includes.accommodation">Noclegi</li>
+              <li data-i18n="offers.includes.meals">Wyzywienie</li>
+              <li data-i18n="offers.includes.documents">Dokumenty</li>
             </ul>
           </div>
         </div>
@@ -674,57 +671,69 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
 
     const translations = {
       pl: {
-  nav: { home:'Strona glowna', about:'O nas', services:'Uslugi', offers:'Oferta', contact:'Kontakt' },
-  hero: {
-    title:'Polowania w Polsce',
-    subtitle:'Profesjonalna organizacja polowan w Polsce. Sprawdzone lowiska, doswiadczeni przewodnicy i pelna logistyka.',
-    cta:'Poznaj oferte'
-  },
-  about: {
-    subtitle:'Tradycja i profesjonalizm',
-    title:'Polowania z Doswiadczeniem',
-    text1:'Mamy ponad 30-letnie doswiadczenie w prowadzeniu i organizacji polowan, w tym polowan dla mysliwych z Danii, Norwegii, Belgii i Francji, ktorzy polowali w naszych obwodach.',
-    text2:'Lowiska w regionie kolobrzeskim naleza do najbogatszych w zwierzyne gruba w Polsce i wyrozniaja sie szczegolnie duza liczebnoscia dzikow, jeleni oraz saren.',
-    text3:'W okresie rykowiska pozyskuje sie byki o masie wiencow od 6 do 8 kg, z mozliwoscia spotkania sztuk przekraczajacych 10 kg. Duza liczba dzikow pozwala nam organizowac zarowno polowania pedzone, jak i bardzo popularne polowania indywidualne. Polowania na rogacze ciesza sie rowniez duzym zainteresowaniem, zwlaszcza w maju oraz w okresie lipiec–sierpien. Przecietna masa trofeum wynosi 250–350 g netto, choc zdarzaja sie takze okazy przekraczajace 500 g.',
-    cta:'Kontakt'
-  },
-  services: {
-    title:'Nasze Uslugi',
-    subtitle:'Kompleksowa organizacja polowan z pelnym serwisem',
-    service1:{ title:'Polowania Indywidualne', desc:'Polowanie dopasowane do Ciebie + opieka przewodnika.' },
-    service2:{ title:'Polowania Zbiorowe', desc:'Organizacja wyjazdow dla grup.' },
-    service3:{ title:'Zakwaterowanie', desc:'Sprawdzone i komfortowe noclegi blisko lowisk.' },
-    service4:{ title:'Wyzywienie', desc:'Wyzywnienie zarowno w miejsu zakwaterowania jak rowniez w lowisku.' },
-    service5:{ title:'Trofea', desc:'Preparacja trofeow.' },
-    service6:{ title:'Formalnosci', desc:'Zajmujemy sie dokumentami, zezwoleniami oraz przesylamy voucher na polowanie.' }
-  },
-  offers: {
-    title:'Oferta Polowan',
-    subtitle:'Polowania organizowane profesjonalnie w najlepszych rejonach',
-    pricing:'Wycena indywidualna',
-    pricingText:'Ceny zalezne od terminu, liczby dni, standardu noclegu i uslug dodatkowych. Daj parametry — dostajesz konkretna wycene.',
-    pricingCta:'Zapytaj o wycene'
-  },
-  contact: {
-    title:'Kontakt',
-    subtitle:'Napisz — odpowiemy i dopniemy wyjazd',
-    contactData:'Dane kontaktowe',
-    formTitle:'Formularz',
-    emailLabel:'Email *',
-    phoneLabel:'Telefon',
-    messageLabel:'Opis polowania *',
-    messagePlaceholder:'Opisz: gatunek, termin, liczba osob, standard noclegu...',
-    consentLabel:'Zgadzam sie na kontakt w sprawie organizacji polowania.',
-    submitBtn:'Wyslij',
-    submitMsg:'Dzieki! Odpowiemy w ciagu 24h.'
-  },
-  footer: {
-    company:'Organizacja polowan w Polsce dla klientow zagranicznych. Logistyka, przewodnicy, noclegi.',
-    navigation:'Nawigacja',
-    legal:'Informacje',
-    copyright:'All rights reserved.'
-  }
-},
+        nav: { home:'Strona glowna', about:'O nas', services:'Uslugi', offers:'Oferta', contact:'Kontakt' },
+        hero: {
+          title:'Polowania w Polsce',
+          subtitle:'Profesjonalna organizacja polowan w Polsce. Sprawdzone lowiska, doswiadczeni przewodnicy i pelna logistyka.',
+          cta:'Poznaj oferte'
+        },
+        about: {
+          subtitle:'Tradycja i profesjonalizm',
+          title:'Polowania z Doswiadczeniem',
+          text1:'Mamy ponad 30-letnie doswiadczenie w prowadzeniu i organizacji polowan, w tym polowan dla mysliwych z Danii, Norwegii, Belgii i Francji, ktorzy polowali w naszych obwodach.',
+          text2:'Lowiska w regionie kolobrzeskim naleza do najbogatszych w zwierzyne gruba w Polsce i wyrozniaja sie szczegolnie duza liczebnoscia dzikow, jeleni oraz saren.',
+          text3:'W okresie rykowiska pozyskuje sie byki o masie wiencow od 6 do 8 kg, z mozliwoscia spotkania sztuk przekraczajacych 10 kg. Duza liczba dzikow pozwala nam organizowac zarowno polowania pedzone, jak i bardzo popularne polowania indywidualne. Polowania na rogacze ciesza sie rowniez duzym zainteresowaniem, zwlaszcza w maju oraz w okresie lipiec–sierpien. Przecietna masa trofeum wynosi 250–350 g netto, choc zdarzaja sie takze okazy przekraczajace 500 g.',
+          photos:'Zdjecia z polowan 🦌 🐗 🦆',
+          cta:'Kontakt'
+        },
+        services: {
+          title:'Nasze Uslugi',
+          subtitle:'Kompleksowa organizacja polowan z pelnym serwisem',
+          service1:{ title:'Polowania Indywidualne', desc:'Polowanie dopasowane do Ciebie + opieka przewodnika.' },
+          service2:{ title:'Polowania Zbiorowe', desc:'Organizacja wyjazdow dla grup.' },
+          service3:{ title:'Zakwaterowanie', desc:'Sprawdzone i komfortowe noclegi blisko lowisk.' },
+          service4:{ title:'Wyzywienie', desc:'Wyzywnienie zarowno w miejsu zakwaterowania jak rowniez w lowisku.' },
+          service5:{ title:'Trofea', desc:'Preparacja trofeow.' },
+          service6:{ title:'Formalnosci', desc:'Zajmujemy sie dokumentami, zezwoleniami oraz przesylamy voucher na polowanie.' }
+        },
+        offers: {
+          title:'Oferta Polowan',
+          subtitle:'Polowania organizowane profesjonalnie w najlepszych rejonach',
+          roe:{ title:'Sarna (rogacz)', season:'Sezon: maj - wrzesien', desc:'Najlepszy okres to ruja (lipiec/sierpien). Zasiadka lub podchod, zalezne od terenu i preferencji.' },
+          reddeer:{ title:'Jelen (rykowisko)', peak:'Szczyt: wrzesien - pazdziernik', desc:'Rykowisko to najmocniejsza forma polowania na byki. Organizujemy w sprawdzonych kompleksach lesnych.' },
+          includesTitle:'Pakiet zawiera:',
+          includes:{
+            guide:'Przewodnik',
+            transportArea:'Transport w lowisku',
+            transportOffroad:'Transport terenowy',
+            accommodation:'Noclegi',
+            meals:'Wyzywienie',
+            documents:'Dokumenty'
+          },
+          pricing:'Wycena indywidualna',
+          pricingText:'Ceny zalezne od terminu, liczby dni, standardu noclegu i uslug dodatkowych. Daj parametry — dostajesz konkretna wycene.',
+          pricingCta:'Zapytaj o wycene'
+        },
+        contact: {
+          title:'Kontakt',
+          subtitle:'Napisz — odpowiemy i dopniemy wyjazd',
+          contactData:'Dane kontaktowe',
+          formTitle:'Formularz',
+          emailLabel:'Email *',
+          phoneLabel:'Telefon',
+          messageLabel:'Opis polowania *',
+          messagePlaceholder:'Opisz: gatunek, termin, liczba osob, standard noclegu...',
+          consentLabel:'Zgadzam sie na kontakt w sprawie organizacji polowania.',
+          submitBtn:'Wyslij',
+          submitMsg:'Dzieki! Odpowiemy w ciagu 24h.'
+        },
+        footer: {
+          company:'Organizacja polowan w Polsce dla klientow zagranicznych. Logistyka, przewodnicy, noclegi.',
+          navigation:'Nawigacja',
+          legal:'Informacje',
+          copyright:'All rights reserved.'
+        }
+      },
 
       en: {
         nav: { home:'Home', about:'About', services:'Services', offers:'Offers', contact:'Contact' },
@@ -739,6 +748,7 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
           text1:'We organize hunts across Poland with trusted local hunting clubs and proven grounds.',
           text2:'Experience and local knowledge = safer, better organized hunts with clear expectations.',
           text3:'We handle the logistics: accommodation, meals, transport in the hunting area, paperwork and trophy preparation.',
+          photos:'Hunting photos 🦌 🐗 🦆',
           cta:'Contact us'
         },
         services: {
@@ -754,6 +764,17 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
         offers: {
           title:'Hunting Offers',
           subtitle:'Professionally organized hunts in Poland',
+          roe:{ title:'Roe deer (buck)', season:'Season: May – September', desc:'Best time is the rut (July/August). Stand hunting or stalking depending on terrain and preferences.' },
+          reddeer:{ title:'Red deer (rut)', peak:'Peak: September – October', desc:'The rut is the most intense form of hunting stags. We organize it in proven forest areas.' },
+          includesTitle:'Package includes:',
+          includes:{
+            guide:'Guide',
+            transportArea:'Transport in the hunting area',
+            transportOffroad:'Off-road transport',
+            accommodation:'Accommodation',
+            meals:'Meals',
+            documents:'Paperwork'
+          },
           pricing:'Individual Pricing',
           pricingText:'Pricing depends on dates, number of days, accommodation standard and extras. Give us your parameters — we send a clear quote.',
           pricingCta:'Request a quote'
@@ -792,6 +813,7 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
           text1:'Nous organisons des chasses dans toute la Pologne avec des societes de chasse locales fiables et des territoires verifies.',
           text2:'Experience et connaissance du terrain = organisation plus sure et resultats concrets.',
           text3:'Nous gerons la logistique : hebergement, repas, transport sur le territoire, formalites et preparation des trophees.',
+          photos:'Photos de chasse 🦌 🐗 🦆',
           cta:'Contact'
         },
         services: {
@@ -807,6 +829,17 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
         offers: {
           title:'Offres de chasse',
           subtitle:'Chasses organisees professionnellement dans les meilleurs secteurs',
+          roe:{ title:'Chevreuil (brocard)', season:'Saison : mai – septembre', desc:'Meilleure periode : le rut (juillet/aout). Affut ou approche selon le terrain et vos preferences.' },
+          reddeer:{ title:'Cerf (brame)', peak:'Pic : septembre – octobre', desc:'Le brame est la forme la plus intense de chasse au cerf. Nous l’organisons dans des zones forestieres verifiees.' },
+          includesTitle:'Le forfait comprend :',
+          includes:{
+            guide:'Guide',
+            transportArea:'Transport sur le territoire',
+            transportOffroad:'Transport tout-terrain',
+            accommodation:'Hebergement',
+            meals:'Repas',
+            documents:'Formalites'
+          },
           pricing:'Devis individuel',
           pricingText:'Le prix depend des dates, du nombre de jours, du standard d’hebergement et des options. Donnez vos parametres — vous recevez un devis clair.',
           pricingCta:'Demander un devis'
@@ -845,6 +878,7 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
           text1:'Vi organiserer jakt i hele Polen med lokale jaktlag og testede jaktomrader.',
           text2:'Erfaring og lokalkunnskap = tryggere og bedre planlagte jakter.',
           text3:'Vi tar oss av: overnatting, mat, transport i omradet, dokumenter og trofebehandling.',
+          photos:'Jaktbilder 🦌 🐗 🦆',
           cta:'Kontakt oss'
         },
         services: {
@@ -860,6 +894,17 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
         offers: {
           title:'Jakttilbud',
           subtitle:'Profesjonelt organisert jakt i Polen',
+          roe:{ title:'Raadyret (bukk)', season:'Sesong: mai – september', desc:'Beste periode er brunsten (juli/august). Postering eller smygjakt avhengig av terreng og preferanser.' },
+          reddeer:{ title:'Hjort (brunst)', peak:'Topp: september – oktober', desc:'Brunsten er den mest intense formen for hjortejakt. Vi organiserer i velprøvde skogomrader.' },
+          includesTitle:'Pakken inkluderer:',
+          includes:{
+            guide:'Guide',
+            transportArea:'Transport i jaktomradet',
+            transportOffroad:'Terrengtransport',
+            accommodation:'Overnatting',
+            meals:'Mat',
+            documents:'Dokumenter'
+          },
           pricing:'Individuell prising',
           pricingText:'Pris avhenger av datoer, antall dager, standard og tillegg. Send parametere — fa et tydelig tilbud.',
           pricingCta:'Be om tilbud'
@@ -898,6 +943,7 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
           text1:'Vi organiserar jakt i hela Polen med lokala jaktlag och beprovade marker.',
           text2:'Erfarenhet och lokalkannedom = tryggare, battre organiserade jakter.',
           text3:'Vi tar hand om: boende, mat, transport, dokument och trofer.',
+          photos:'Jaktbilder 🦌 🐗 🦆',
           cta:'Kontakta oss'
         },
         services: {
@@ -913,6 +959,17 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
         offers: {
           title:'Jakterbjudanden',
           subtitle:'Professionellt organiserad jakt i Polen',
+          roe:{ title:'Rådjur (bock)', season:'Säsong: maj – september', desc:'Bästa period är brunsten (juli/augusti). Passjakt eller smygjakt beroende på terräng och önskemål.' },
+          reddeer:{ title:'Kronhjort (brunst)', peak:'Topp: september – oktober', desc:'Brunsten är den mest intensiva formen av jakt på hjort. Vi organiserar i beprövade skogsområden.' },
+          includesTitle:'Paketet inkluderar:',
+          includes:{
+            guide:'Guide',
+            transportArea:'Transport i jaktmarken',
+            transportOffroad:'Terrängtransport',
+            accommodation:'Boende',
+            meals:'Mat',
+            documents:'Dokument'
+          },
           pricing:'Individuell prissattning',
           pricingText:'Pris beror pa datum, antal dagar, standard och tillagg. Skicka detaljer — fa en tydlig offert.',
           pricingCta:'Be om offert'
@@ -951,6 +1008,7 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
           text1:'Wir organisieren Jagden in ganz Polen mit lokalen Jagdvereinen und bewahrten Revieren.',
           text2:'Erfahrung und Ortskenntnis = sicherere, besser organisierte Jagden.',
           text3:'Wir ubernehmen: Unterkunft, Essen, Transport, Dokumente und Trophabearbeitung.',
+          photos:'Jagd-Fotos 🦌 🐗 🦆',
           cta:'Kontakt'
         },
         services: {
@@ -966,6 +1024,17 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
         offers: {
           title:'Jagdangebote',
           subtitle:'Professionell organisierte Jagden in Polen',
+          roe:{ title:'Rehbock', season:'Saison: Mai – September', desc:'Beste Zeit ist die Brunft (Juli/August). Ansitz oder Pirsch je nach Gebiet und Wunsch.' },
+          reddeer:{ title:'Rotwild (Brunft)', peak:'Hochzeit: September – Oktober', desc:'Die Brunft ist die intensivste Form der Hirschjagd. Wir organisieren in bewahrten Waldgebieten.' },
+          includesTitle:'Paket beinhaltet:',
+          includes:{
+            guide:'Guide',
+            transportArea:'Transport im Jagdgebiet',
+            transportOffroad:'Geländetransport',
+            accommodation:'Unterkunft',
+            meals:'Verpflegung',
+            documents:'Dokumente'
+          },
           pricing:'Individuelle Preise',
           pricingText:'Preis hangt ab von Terminen, Tagen, Standard und Extras. Senden Sie Details — wir schicken ein klares Angebot.',
           pricingCta:'Angebot anfragen'
@@ -1004,6 +1073,7 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
           text1:'Wij organiseren jacht in heel Polen met lokale jachtverenigingen en bewezen gebieden.',
           text2:'Ervaring en lokale kennis = veiliger en beter georganiseerd.',
           text3:'Wij regelen: verblijf, maaltijden, transport, documenten en trofee-afhandeling.',
+          photos:'Jachtfoto’s 🦌 🐗 🦆',
           cta:'Neem contact op'
         },
         services: {
@@ -1019,6 +1089,17 @@ Polowania na rogacze cieszą się również dużym zainteresowaniem, zwłaszcza 
         offers: {
           title:'Jachtaanbiedingen',
           subtitle:'Professioneel georganiseerde jacht in Polen',
+          roe:{ title:'Ree (bok)', season:'Seizoen: mei – september', desc:'Beste periode is de bronst (juli/augustus). Aanzit of aanpirsj afhankelijk van terrein en voorkeur.' },
+          reddeer:{ title:'Edelhert (bronst)', peak:'Piek: september – oktober', desc:'De bronst is de meest intense vorm van hertenjacht. We organiseren in bewezen bosgebieden.' },
+          includesTitle:'Pakket bevat:',
+          includes:{
+            guide:'Gids',
+            transportArea:'Transport in het jachtgebied',
+            transportOffroad:'Terreintransport',
+            accommodation:'Accommodatie',
+            meals:'Maaltijden',
+            documents:'Documenten'
+          },
           pricing:'Individuele prijzen',
           pricingText:'Prijs hangt af van data, aantal dagen, standaard en extras. Stuur details — wij sturen een duidelijke offerte.',
           pricingCta:'Offerte aanvragen'
