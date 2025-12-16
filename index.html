@@ -30,7 +30,15 @@
       display:flex; align-items:center; gap:.5rem;
       user-select:none;
     }
-    .logo::before { content:"🦌"; font-size:1.8rem; }
+    .logo::before { content: none; }
+
+.logo-img{
+  height: 44px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.35));
+}
+
 
     .nav-links { display:flex; list-style:none; gap:2.5rem; }
     .nav-links a {
